@@ -1,8 +1,5 @@
 #pragma once
 
-#include "Include.h"
-
-
 class Eviorment {
 
 public:
