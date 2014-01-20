@@ -21,7 +21,7 @@
     <ClCompile Include="Agent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Eviorment.cpp">
+    <ClCompile Include="Enviorment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,7 +29,10 @@
     <ClInclude Include="Agent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Eviorment.h">
+    <ClInclude Include="Enviorment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

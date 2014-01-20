@@ -8,7 +8,7 @@ class Agent
 public:
 	Agent(void);
 	~Agent(void);
-
-	int Run(Enviroment world);
+	
+	int Run(Enviorment* world);
 };
 

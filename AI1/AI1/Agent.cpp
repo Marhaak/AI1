@@ -11,7 +11,7 @@ Agent::~Agent(void)
 }
 
 
-int Agent::Run(Enviroment world){
+int Agent::Run(Enviorment* world){
 
 	return 0;
 };

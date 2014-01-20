@@ -1,9 +1,9 @@
 #pragma once
-
-class Eviorment {
+// This class will handle the enviorment the agent will "live" in
+class Enviorment {
 
 public:
-	Eviorment(void);
-	~Eviorment(void);
+	Enviorment(void);
+	~Enviorment(void);
 };
 
