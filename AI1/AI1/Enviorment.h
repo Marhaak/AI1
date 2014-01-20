@@ -7,5 +7,6 @@ class Enviorment {
 public:
 	Enviorment(void);
 	~Enviorment(void);
+
 };
 
