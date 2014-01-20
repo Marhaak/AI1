@@ -1,6 +1,7 @@
 #pragma once
-class Eviorment
-{
+
+class Eviorment {
+
 public:
 	Eviorment(void);
 	~Eviorment(void);
