@@ -7,6 +7,7 @@ class Agent{
 
 private:
 	bool running;
+	int steps;
 
 
 public:
