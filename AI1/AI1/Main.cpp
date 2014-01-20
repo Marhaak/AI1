@@ -16,7 +16,6 @@ int main(){
 		std::cout<< "It is very clean now!"<< std::endl;
 	}
 
-	std::cout << "Hello World!" << std::endl;
 
 	return 0;
 }
