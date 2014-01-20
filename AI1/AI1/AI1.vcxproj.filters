@@ -29,10 +29,17 @@
     <ClInclude Include="Agent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Enviorment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include.h">
+=======
+    <ClInclude Include="Include.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enviorment.h">
+>>>>>>> 9e8b40842e8850b270c91a98315354e55caf4873
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,6 +5,7 @@
 
 int main(){
 
+
 	Enviorment* enviorment = NULL;
 	Agent* agent = NULL;
 
