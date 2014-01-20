@@ -1,12 +1,12 @@
 
 #include "Include.h"
 #include "Agent.h"
-#include "Enviorment.h"
+#include "Environment.h"
 
 int main(){
 
 	
-	Enviorment* Enviorment = NULL;
+	Environment* Environment = NULL;
 
 	std::cout << "Hello World!" << std::endl;
 

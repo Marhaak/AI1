@@ -1,14 +1,17 @@
 #pragma once
 
 #include "Include.h"
-#include "Enviorment.h"
+#include "Environment.h"
 
-class Agent
-{
+class Agent{
+
+private:
+	bool running;
+
+
 public:
 	Agent(void);
 	~Agent(void);
-
-	int Run(Enviroment world);
+	int Run(Environment world);
 };
 

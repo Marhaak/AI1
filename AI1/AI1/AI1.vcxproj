@@ -65,12 +65,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
-    <ClCompile Include="Enviorment.cpp" />
+    <ClCompile Include="Environment.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
-    <ClInclude Include="Enviorment.h" />
+    <ClInclude Include="Environment.h" />
     <ClInclude Include="Include.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
