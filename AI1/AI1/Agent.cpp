@@ -39,3 +39,22 @@ int Agent::Run(Environment* world){
 
 	return 0;
 };
+
+void Agent::Vacuum() {
+
+	Sleep(1000);
+	std::cout<< "I am vacuuming here now, soon clean"<< std::endl;
+	Sleep(1000);
+	std::cout<< "Clean!"<< std::endl;
+}
+
+void Agent::Move() {
+
+	Sleep(1000);
+	std::cout<< "Moving to next"<< std::endl;
+	Sleep(1000);
+	/* move code here*/
+
+	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
+
+}
