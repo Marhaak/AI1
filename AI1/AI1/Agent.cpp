@@ -15,7 +15,6 @@ Agent::Agent(void){
 
 Agent::~Agent(void){
 
-	delete this;
 
 }
 
