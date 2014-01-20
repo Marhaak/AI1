@@ -12,15 +12,7 @@ Agent::~Agent(void)
 }
 
 
-int Agent::Run(Environment world){
-
-	running = true;
-	
-	while (running){
-
-
-
-	}
+int Agent::Run(Environment* world){
 
 	return 0;
 };

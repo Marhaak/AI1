@@ -12,6 +12,7 @@ private:
 public:
 	Agent(void);
 	~Agent(void);
-	int Run(Environment world);
+
+	int Run(Environment* world);
 };
 

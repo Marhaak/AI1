@@ -5,8 +5,8 @@
 
 int main(){
 
-	
 	Environment* Environment = NULL;
+	Agent* agent = NULL;
 
 	std::cout << "Hello World!" << std::endl;
 
