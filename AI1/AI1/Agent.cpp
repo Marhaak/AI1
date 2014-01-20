@@ -1,4 +1,5 @@
 #include "Agent.h"
+#include "Environment.h"
 
 
 Agent::Agent(void)
@@ -11,7 +12,7 @@ Agent::~Agent(void)
 }
 
 
-int Agent::Run(Enviorment* world){
+int Agent::Run(Environment* world){
 
 	return 0;
 };

@@ -1,18 +1,17 @@
 
 #include "Include.h"
 #include "Agent.h"
-#include "Enviorment.h"
+#include "Environment.h"
 
 int main(){
 
-
-	Enviorment* enviorment = NULL;
+	Environment* environment = NULL;
 	Agent* agent = NULL;
 
-	enviorment = new Enviorment();
+	environment = new Environment();
 	agent = new Agent();
 
-	if(agent->Run(enviorment) == 1) {
+	if(agent->Run(environment) == 1) {
 
 		std::cout<< "It is very clean now!"<< std::endl;
 	}
