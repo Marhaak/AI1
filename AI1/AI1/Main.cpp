@@ -18,5 +18,8 @@ int main(){
 
 	std::cout << "Hello World!" << std::endl;
 
+	delete environment;
+	delete agent;
+
 	return 0;
 }

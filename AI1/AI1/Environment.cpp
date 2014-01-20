@@ -1,6 +1,5 @@
 #include "Environment.h"
 
-
 Environment::Environment(void)
 {
 }

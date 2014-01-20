@@ -8,6 +8,8 @@ class Agent{
 private:
 	bool running;
 	int steps;
+	int posX;
+	int posY;
 
 
 public:
