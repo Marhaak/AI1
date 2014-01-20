@@ -1,6 +1,6 @@
 #pragma once
 
-class Eviorment {
+class Enviorment {
 
 public:
 	Eviorment(void);

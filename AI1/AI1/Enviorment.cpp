@@ -1,11 +1,11 @@
-#include "Eviorment.h"
+#include "Enviorment.h"
 
 
-Eviorment::Eviorment(void)
+Eviorment::Enviorment(void)
 {
 }
 
 
-Eviorment::~Eviorment(void)
+Eviorment::~Enviorment(void)
 {
 }
