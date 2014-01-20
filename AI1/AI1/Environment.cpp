@@ -3,14 +3,10 @@
 #include "Environment.h"
 
 
-Environment::Environment(void)
-{
-
-
 
 Environment::Environment(int x, int y){
 
-	map.resize( x, vector<int>(y, 0) );
+	map.resize( x, std::vector<int>(y, 0) );
 
 
 
