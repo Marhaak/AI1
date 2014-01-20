@@ -2,8 +2,9 @@
 
 #include "Include.h"
 
-class Eviorment
-{
+
+class Eviorment {
+
 public:
 	Eviorment(void);
 	~Eviorment(void);
