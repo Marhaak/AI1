@@ -12,15 +12,16 @@ Environment::Environment(int _x, int _y){
 	ySize = _y;
 	srand( time(NULL) );
 	
-	std::vector<Node*> temp;
-	Node* node = new Node();
-	
 	for (int i = 0; i < _x; i++){
+		
+		std::vector<Node*> temp;
 		map.push_back( temp );
 
 		for (int j = 0; j < _y; j++){
+
+			Node* node = new Node();
 			map[i].push_back( node );
-			//map[i][j]->setValue( rand() % 3) ;
+			
 		}
 	}
 
