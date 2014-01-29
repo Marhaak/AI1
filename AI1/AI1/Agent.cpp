@@ -3,12 +3,13 @@
 #include "Include.h"
 using namespace std;
 
-Agent::Agent(void){
+Agent::Agent(Environment* _world){
 	
 	running = false;
 	steps = 0;
 	posX = 0;
 	posY = 0;
+	world = _world;
 	positionNode = nullptr;
 }
 
@@ -17,7 +18,7 @@ Agent::~Agent(void){
 	delete positionNode;
 }
 
-int Agent::Run(Environment* _world){
+int Agent::Run(){
 
 	running = true;
 
@@ -52,26 +53,29 @@ void Agent::Vacuum() {
 	std::cout<< "Clean!"<< std::endl;
 }
 
-void Agent::Move(Environment* _world) {
+void Agent::Move() {
 
 	Sleep(1000);
 	std::cout<< "Moving to next"<< std::endl;
 	Sleep(1000);
 	// up
-	positionNode = _world->isMoveAble(posX+1, posY);
+	positionNode = world->isMoveAble(posX+1, posY);
 	if(positionNode != nullptr) {
 		posX += 1;
 	}
 	// right
-	if(_world->isMoveAble(posX, posY+1)) {
+	positionNode = world->isMoveAble(posX, posY+1);
+	if(positionNode != nullptr) {
 		posY += 1;
 	}
 	// down
-	if(_world->isMoveAble(posX-1, posY)) {
+	positionNode = world->isMoveAble(posX-1, posY);
+	if(positionNode != nullptr) {
 		posX -= 1;
 	}
 	// left
-	if(_world->isMoveAble(posX, posY-1)) {
+	positionNode = world->isMoveAble(posX, posY-1);
+	if(positionNode != nullptr) {
 		posY -= 1;
 	}
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
