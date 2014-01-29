@@ -9,9 +9,12 @@ private:
 
 	// Variables
 	bool running;
+	bool beenHere; // false if not been there, true if it has
 	int steps;
 	int posX;
 	int posY;
+	int posXBeenHere;
+	int posYBeenHere;
 	Node* positionNode;
 	Environment* world;
 

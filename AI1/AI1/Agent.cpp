@@ -63,24 +63,52 @@ void Agent::Move() {
 	Sleep(1000);
 
 	// Down
-	if(world->isMoveAble(posX+1, posY)->getValue() != 2 && !world->isMoveAble(posX+1, posY)->getVisit() ) {
-		posX += 1;
+	if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
+		
+		if(!world->isMoveAble(posX+1, posY)->getVisit() ) {
+			posX += 1;
+			beenHere = false;
+		} else {
+			posXBeenHere += 1;
+			beenHere = true;
+		}
 	}
 
 	// right
-	else if(world->isMoveAble(posX, posY+1)->getValue() != 2  && !world->isMoveAble(posX, posY+1)->getVisit()) {
-		posY += 1;
+	else if(world->isMoveAble(posX, posY+1)->getValue() != 2) {
+
+		if(!world->isMoveAble(posX, posY+1)->getVisit() ) {
+			posY += 1;
+			beenHere = false;
+		} else {
+			posYBeenHere += 1;
+			beenHere = true;
+		}
 	}
 
 	// down
-	else if(world->isMoveAble(posX-1, posY)->getValue() != 2  && !world->isMoveAble(posX-1, posY)->getVisit()) {
-		posX -= 1;
+	else if(world->isMoveAble(posX-1, posY)->getValue() != 2) {
+
+		if(!world->isMoveAble(posX-1, posY)->getVisit() ) {
+			posX -= 1;
+			beenHere = false;
+		} else {
+			posXBeenHere -= 1;
+			beenHere = true;
+		}
 	}
 
 	// left
-	else if(world->isMoveAble(posX, posY-1)->getValue() != 2  && !world->isMoveAble(posX, posY-1)->getVisit()) {
+	else if(world->isMoveAble(posX, posY-1)->getValue() != 2) {
+		
+		if(!world->isMoveAble(posX, posY-1)->getVisit() ) {
 		posY -= 1;
-	}
+		beenHere = false;
+		} else {
+			posYBeenHere -= 1;
+			beenHere = true;
+		}
+	} 
 	//stuck
 	else{
 		cout << "Trapped bot is unhappy" << std::endl;
@@ -88,7 +116,11 @@ void Agent::Move() {
 	}
 
 	//new position
-	positionNode = world->isMoveAble(posX, posY);
+	if(!beenHere) {
+		positionNode = world->isMoveAble(posX, posY);
+	} else {
+		positionNode = world->isMoveAble(posXBeenHere, posYBeenHere);
+	}
 
 	positionNode->visit();
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
