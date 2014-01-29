@@ -15,7 +15,7 @@ int main(){
 	
 	if(agent->Run() == 1) {
 
-		std::cout<< "It is very clean now!"<< std::endl;
+		cout<< "It is very clean now!"<< endl;
 	}
 
 	cin.get();

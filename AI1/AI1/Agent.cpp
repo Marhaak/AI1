@@ -44,18 +44,22 @@ void Agent::Vacuum() {
 		cout << "Node is clean" << std::endl;
 	}
 	else {
+
 		Sleep(300);
 		std::cout<< "I am vacuuming here now, soon clean...";
 		Sleep(300);
 		std::cout<< " Clean!"<< std::endl;
+
 		positionNode->setValue(0);
 	}
 }
 
 void Agent::Move() {
 
+
 	Sleep(300);
 	std::cout<< "Moving to next"<< std::endl;
+
 	Sleep(1000);
 
 	// Down
@@ -85,9 +89,11 @@ void Agent::Move() {
 
 	//new position
 	positionNode = world->isMoveAble(posX, posY);
+
 	positionNode->visit();
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
 	Sleep(1000);
+
 }
 
 
