@@ -5,9 +5,6 @@
 using namespace std;
 
 int main(){
-	char stop;
-
-
 	Environment* environment = NULL;
 	Agent* agent = NULL;
 	Node* startNode = nullptr;
@@ -22,7 +19,11 @@ int main(){
 	}
 
 	cin.get();
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> a1e342cab1e896a66798acf8a17234615c03c9a4
 	delete environment;
 	delete agent;
 

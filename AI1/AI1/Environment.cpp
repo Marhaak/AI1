@@ -11,7 +11,6 @@ Environment::Environment(int _x, int _y){
 	srand( time(NULL) );
 	
 	for (int i = 0; i < _x; i++){
-		
 		std::vector<Node*> temp;
 		map.push_back( temp );
 
@@ -23,29 +22,30 @@ Environment::Environment(int _x, int _y){
 
 	for (int i = 0; i < _x; i++){
 		for (int j = 0; j < _y; j++){
-			
 			if (map[i][j]->getValue() == 0){std::cout << "  ";}
 			if (map[i][j]->getValue() == 1){std::cout << "~ ";}
 			if (map[i][j]->getValue() == 2){std::cout << "# ";}
-
 		}
 		std::cout << std::endl;
 	}
-	std::cin >> xSize;
 }
 
 Environment::~Environment(){
-
+	
+	//map = nullptr
+	for (int x = 0; x < xSize; x++){
+		for (int y = 0; y < ySize; y++){
+			map[x][y] = nullptr;
+		}
+	}
 }
 
 Node* Environment::isMoveAble(int _x, int _y) {
 
-	if(_x > xSize) {
-		return nullptr;
-	} else if(_y > ySize) {
-		return nullptr;
+	if(_x > xSize || _x < 0 || _y > ySize || _y < 0) {
+		return new Node(2);
 	}
-	return map[_x][_y];
+	else return map[_x][_y];
 }
 
 Node* Environment::SetStartNode() {
