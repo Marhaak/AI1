@@ -22,9 +22,9 @@ public:
 	// Variables
 
 	// Functions
-	Agent(void);
-	~Agent(void);
+	Agent();
+	~Agent();
 
-	int Run(Environment* world);
+	int Run(Environment* _world);
 };
 
