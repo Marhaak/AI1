@@ -36,3 +36,6 @@ Environment::~Environment(){
 
 
 }
+
+
+// Heisann, dette er Alf som skriver.
