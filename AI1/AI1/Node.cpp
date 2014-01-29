@@ -1,5 +1,3 @@
-
-
 #include "Include.h"
 #include "Node.h"
 
@@ -7,18 +5,14 @@
 Node::Node(){
 
 	//Creation
-
+	int value = 0;
 }
-
-
 
 Node::~Node(){
 
 	//Destruction
 
 }
-
-
 
 bool Node::enter(){
 
@@ -33,11 +27,8 @@ int Node::getValue(){
 	return value;
 }
 
-
 int Node::setValue(int _new){
 
 	value = _new;
 	return value;
 }
-
-

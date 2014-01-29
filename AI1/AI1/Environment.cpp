@@ -1,4 +1,3 @@
-
 #include "Include.h"
 #include "Environment.h"
 #include "Node.h"
@@ -36,6 +35,3 @@ Environment::~Environment(){
 
 
 }
-
-
-// Heisann, dette er Alf som skriver.

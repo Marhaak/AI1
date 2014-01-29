@@ -2,21 +2,18 @@
 #include "Environment.h"
 #include "Include.h"
 
-
 Agent::Agent(void){
 
 	steps = 0;
 	running = false;
 	posX = 0;
 	posY = 0;
-
 }
 
 Agent::~Agent(void){
 
 
 }
-
 
 int Agent::Run(Environment* _world){
 
@@ -27,6 +24,8 @@ int Agent::Run(Environment* _world){
 
 		/* 
 		Rest of code here
+
+		// Spør miljø om noden agenten står ovenfor
 		*/
 
 
