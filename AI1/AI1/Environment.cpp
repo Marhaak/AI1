@@ -55,3 +55,19 @@ void Environment::draw(int _x, int _y){
 		std::cout << std::endl;
 	}
 }
+
+Node* Environment::SetStartNode() {
+
+	bool run = true;
+
+	while(run) {
+		int startPosX = rand() % xSize+1;
+		int startPosY = rand() % ySize+1;
+		Node* startNode = isMoveAble(startPosX, startPosY);
+		if(startNode->getValue() != 2) {
+
+			return startNode;
+			run = false;
+		}
+	}
+}

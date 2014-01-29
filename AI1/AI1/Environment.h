@@ -12,6 +12,7 @@ private:
 	Node* dummy;
 
 	// Functions
+	
 
 public:
 
@@ -23,5 +24,6 @@ public:
 	~Environment();
 	Node* isMoveAble(int x, int y);
 	void draw(int _x, int _y);
+	Node* SetStartNode();
 };
 

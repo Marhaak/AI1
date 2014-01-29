@@ -18,13 +18,13 @@ private:
 	// Functions
 	void Vacuum();
 	void Move();
-
+	
 
 public:
 	// Variables
 
 	// Functions
-	Agent(Environment* _world);
+	Agent(Environment* _world, Node* _starPos);
 	~Agent();
 
 	int Run();

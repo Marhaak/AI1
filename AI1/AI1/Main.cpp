@@ -7,9 +7,11 @@ using namespace std;
 int main(){
 	Environment* environment = NULL;
 	Agent* agent = NULL;
+	Node* startNode = nullptr;
 
 	environment = new Environment();
-	agent = new Agent(environment);
+	startNode = environment->SetStartNode();
+	agent = new Agent(environment, startNode);
 
 	if(agent->Run() == 1) {
 
@@ -17,7 +19,11 @@ int main(){
 	}
 
 	cin.get();
+<<<<<<< HEAD
+
+=======
 	
+>>>>>>> a1e342cab1e896a66798acf8a17234615c03c9a4
 	delete environment;
 	delete agent;
 

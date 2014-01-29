@@ -4,14 +4,14 @@
 
 using namespace std;
 
-Agent::Agent(Environment* _world){
+Agent::Agent(Environment* _world, Node* _startPos){
 	
 	running = false;
 	steps = 0;
 	posX = 0;
 	posY = 0;
 	world = _world;
-	positionNode = nullptr;
+	positionNode = _startPos;
 }
 
 Agent::~Agent(void){
@@ -22,12 +22,12 @@ Agent::~Agent(void){
 int Agent::Run(){
 
 	running = true;
-
-	//infinite running loop :D
+	Vacuum();
+	//infinite to 1k running loop :D
 	while (running) {
 		world->draw(posX, posY);
-		Vacuum();
 		Move();
+		Vacuum();
 
 		steps++;
 		if(steps > 1000) {
@@ -87,3 +87,5 @@ void Agent::Move() {
 	positionNode = world->isMoveAble(posX, posY);
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
 }
+
+
