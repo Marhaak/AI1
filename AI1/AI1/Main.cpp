@@ -15,15 +15,11 @@ int main(){
 
 	if(agent->Run() == 1) {
 
-		std::cout<< "It is very clean now!"<< std::endl;
+		cout<< "It is very clean now!"<< endl;
 	}
 
 	cin.get();
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> a1e342cab1e896a66798acf8a17234615c03c9a4
 	delete environment;
 	delete agent;
 

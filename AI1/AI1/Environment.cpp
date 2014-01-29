@@ -22,11 +22,11 @@ Environment::Environment(int _x, int _y){
 
 	for (int i = 0; i < _x; i++){
 		for (int j = 0; j < _y; j++){
-			if (map[i][j]->getValue() == 0){std::cout << "  ";}
-			if (map[i][j]->getValue() == 1){std::cout << "~ ";}
-			if (map[i][j]->getValue() == 2){std::cout << "# ";}
+			if (map[i][j]->getValue() == 0){cout << "  ";}
+			if (map[i][j]->getValue() == 1){cout << "~ ";}
+			if (map[i][j]->getValue() == 2){cout << "# ";}
 		}
-		std::cout << std::endl;
+		cout << endl;
 	}
 }
 
