@@ -17,7 +17,6 @@ public:
 	// Variables
 
 	// Functions
-	Environment();
 	Environment(int _x = 5, int _y = 5);
 	~Environment();
 };
