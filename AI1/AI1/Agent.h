@@ -13,20 +13,21 @@ private:
 	int posX;
 	int posY;
 	Node* positionNode;
+	Environment* world;
 
 	// Functions
 	void Vacuum();
-	void Move(Environment* _world);
+	void Move();
 
 
 public:
 	// Variables
 
 	// Functions
-	Agent();
+	Agent(Environment* _world);
 	~Agent();
 
-	int Run(Environment* _world);
+	int Run();
 
 };
 

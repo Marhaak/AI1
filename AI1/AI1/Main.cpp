@@ -12,9 +12,9 @@ int main(){
 	Agent* agent = NULL;
 
 	environment = new Environment();
-	agent = new Agent();
+	agent = new Agent(environment);
 
-	if(agent->Run(environment) == 1) {
+	if(agent->Run() == 1) {
 
 		std::cout<< "It is very clean now!"<< std::endl;
 	}

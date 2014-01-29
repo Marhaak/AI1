@@ -3,12 +3,13 @@
 #include "Include.h"
 using namespace std;
 
-Agent::Agent(void){
+Agent::Agent(Environment* _world){
 	
 	running = false;
 	steps = 0;
 	posX = 0;
 	posY = 0;
+	world = _world;
 	positionNode = nullptr;
 }
 
@@ -17,26 +18,17 @@ Agent::~Agent(void){
 	delete positionNode;
 }
 
-int Agent::Run(Environment* _world){
+int Agent::Run(){
 
 	running = true;
 
 	//infinite running loop :D
 	while (running) {
-
-		/* 
-		Rest of code here
-
-		// Spør miljø om noden agenten står ovenfor om status
-		// Reager etter forholdet som blir rapportert
-		// Etter regel funn endres value til node og agent skal flyttes
-
-		*/
-
+		Vacuum();
+		Move();
 
 		steps++;
 		if(steps > 1000) {
-
 			running = false;
 		}
 	}
@@ -46,32 +38,39 @@ int Agent::Run(Environment* _world){
 
 void Agent::Vacuum() {
 
-	Sleep(1000);
-	std::cout<< "I am vacuuming here now, soon clean"<< std::endl;
-	Sleep(1000);
-	std::cout<< "Clean!"<< std::endl;
+	if ( positionNode->getValue() == 0 ) {
+		Sleep(1000);
+		cout << "Node is clean";
+	}
+	else {
+		Sleep(1000);
+		std::cout<< "I am vacuuming here now, soon clean"<< std::endl;
+		Sleep(1000);
+		std::cout<< "Clean!"<< std::endl;
+		positionNode->setValue(0);
+	}
 }
 
-void Agent::Move(Environment* _world) {
+void Agent::Move() {
 
 	Sleep(1000);
 	std::cout<< "Moving to next"<< std::endl;
 	Sleep(1000);
 
 	// up
-	if(_world->isMoveAble(posX+1, posY)->getValue() != 2) {
+	if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
 		posX += 1;
 	}
 	// right
-	else if(_world->isMoveAble(posX+1, posY)->getValue() != 2) {
+	else if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
 		posY += 1;
 	}
 	// down
-	else if(_world->isMoveAble(posX+1, posY)->getValue() != 2) {
+	else if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
 		posX -= 1;
 	}
 	// left
-	else if(_world->isMoveAble(posX+1, posY)->getValue() != 2) {
+	else if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
 		posY -= 1;
 	}
 	//stuck
@@ -80,7 +79,7 @@ void Agent::Move(Environment* _world) {
 	}
 
 	//new position
-	positionNode = _world->isMoveAble(posX, posY);
+	positionNode = world->isMoveAble(posX, posY);
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
 
 }
