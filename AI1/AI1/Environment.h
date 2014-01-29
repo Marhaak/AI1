@@ -9,6 +9,7 @@ private:
 	int xSize;
 	int ySize;
 	std::vector< std::vector<Node*> > map;
+	Node* dummy;
 
 	// Functions
 
@@ -20,6 +21,6 @@ public:
 	// Functions
 	Environment(int _x = 5, int _y = 5);
 	~Environment();
-	bool isMoveAble(int x, int y);
+	Node* isMoveAble(int x, int y);
 };
 

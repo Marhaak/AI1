@@ -1,11 +1,11 @@
 #include "Include.h"
 #include "Node.h"
-
+using namespace std;
 
 Node::Node(int init){
 
 	//Creation
-	int value = init;
+	value = init;
 }
 
 Node::~Node(){

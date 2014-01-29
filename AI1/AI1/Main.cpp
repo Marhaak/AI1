@@ -2,6 +2,7 @@
 #include "Include.h"
 #include "Agent.h"
 #include "Environment.h"
+using namespace std;
 
 int main(){
 	char stop;
