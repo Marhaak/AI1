@@ -34,7 +34,7 @@ int Agent::Run(){
 		if(steps > 1000) {
 			running = false;
 		}
-		cin.get();
+	//	cin.get();
 		system("CLS");
 		
 	}
@@ -61,87 +61,36 @@ void Agent::Vacuum() {
 void Agent::Move() {
 
 	//Sleep(300);
-	std::cout<< "Moving to next"<< std::endl;
+	std::cout<< "Moving to next - ";
 
 	//Sleep(1000);
 
-	//// Down
-	//if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
-	//	cout<< "Down\n";
-	//	if(!world->isMoveAble(posX+1, posY)->getVisit() ) {
-	//		posX += 1;
-	//		beenHere = false;
-	//		cout<< "Down not visited\n";
-	//	} else {
-	//		posXBeenHere += 1;
-	//		beenHere = true;
-	//	}
-	//}
-
-	//// right
-	//else if(world->isMoveAble(posX, posY+1)->getValue() != 2) {
-	//	cout<< "Right\n";
-	//	if(!world->isMoveAble(posX, posY+1)->getVisit() ) {
-	//		posY += 1;
-	//		beenHere = false;
-	//	} else {
-	//		posYBeenHere += 1;
-	//		beenHere = true;
-	//	}
-	//}
-
-	//// down
-	//else if(world->isMoveAble(posX-1, posY)->getValue() != 2) {
-	//	cout<< "Up\n";
-	//	if(!world->isMoveAble(posX-1, posY)->getVisit() ) {
-	//		posX -= 1;
-	//		beenHere = false;
-	//	} else {
-	//		posXBeenHere -= 1;
-	//		beenHere = true;
-	//	}
-	//}
-
-	//// left
-	//else if(!world->isMoveAble(posX, posY-1)->getValue() != 2) {
-	//	cout<< "Left\n";
-	//	if(world->isMoveAble(posX, posY-1)->getVisit() ) {
-	//	posY -= 1;
-	//	beenHere = false;
-	//	} else {
-	//		posYBeenHere -= 1;
-	//		beenHere = true;
-	//	}
-	//} 
-	////stuck
-	//else{
-	//	cout << "Trapped bot is unhappy" << std::endl;
-	//	running = false;
-	//}
+	// TODO: Check for wals, dont move towards them!
 
 	srand( time(NULL) );
 	int randomz = rand() % 4;
-	if(randomz == 0) { // Down
 
+	if(randomz == 0) { // Down
+		cout<< "Down wards\n";
 		if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
 			posX += 1;
 		}
 	} 
 	else if(randomz == 1) { // Right
-
+		cout<< "Right\n";
 		if(world->isMoveAble(posX, posY+1)->getValue() != 2) {
 			posY += 1;
 		}
 	}
 	else if(randomz == 2) { // Up
-
+		cout<< "Up wards\n";
 		if(world->isMoveAble(posX-1, posY)->getValue() != 2) {
 			posX -= 1;
 		}
 	}
-	else if(randomz == 3) { // Up
-
-		if(world->isMoveAble(posX-1, posY)->getValue() != 2) {
+	else if(randomz == 3) { // Left
+		cout<< "Left\n";
+		if(world->isMoveAble(posX, posY-1)->getValue() != 2) {
 			posY -= 1;
 
 		}
