@@ -54,6 +54,7 @@ void Agent::Move(Environment* _world) {
 	Sleep(1000);
 	std::cout<< "Moving to next"<< std::endl;
 	Sleep(1000);
+
 	// up
 	if(_world->isMoveAble(posX+1, posY)) {
 		posX += 1;

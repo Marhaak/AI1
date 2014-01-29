@@ -4,6 +4,8 @@
 #include "Environment.h"
 
 int main(){
+	char stop;
+
 
 	Environment* environment = NULL;
 	Agent* agent = NULL;
@@ -16,6 +18,7 @@ int main(){
 		std::cout<< "It is very clean now!"<< std::endl;
 	}
 
+	std::cin >> stop;
 
 	delete environment;
 	delete agent;
