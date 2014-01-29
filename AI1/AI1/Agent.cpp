@@ -63,7 +63,7 @@ void Agent::Move() {
 	Sleep(300);
 	std::cout<< "Moving to next"<< std::endl;
 
-	Sleep(1000);
+	//Sleep(1000);
 
 	//// Down
 	//if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
