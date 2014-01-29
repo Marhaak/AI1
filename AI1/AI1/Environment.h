@@ -8,6 +8,8 @@ private:
 	// Variables
 	int xSize;
 	int ySize;
+	int botX;
+	int botY;
 	std::vector< std::vector<Node*> > map;
 	Node* dummy;
 

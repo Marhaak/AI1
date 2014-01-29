@@ -10,7 +10,6 @@ int main(){
 	Node* startNode = nullptr;
 
 	environment = new Environment();
-	
 	agent = new Agent(environment);
 	
 	if(agent->Run() == 1) {
@@ -18,7 +17,7 @@ int main(){
 		cout<< "It is very clean now!"<< endl;
 	}
 
-	cin.get();
+	//cin.get();
 
 	delete environment;
 	delete agent;

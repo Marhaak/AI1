@@ -8,8 +8,8 @@ Agent::Agent(Environment* _world){
 	
 	running = false;
 	steps = 0;
-	posX = 3;
-	posY = 2;
+	posX = 0;
+	posY = 0;
 	world = _world;
 	positionNode = _world->SetStartNode();
 }
@@ -27,6 +27,7 @@ int Agent::Run(){
 		world->draw(posX, posY);
 		Vacuum();
 		Move();
+		Sleep(2500);
 		
 		steps++;
 		if(steps > 1000) {
@@ -55,7 +56,6 @@ void Agent::Vacuum() {
 }
 
 void Agent::Move() {
-
 
 	Sleep(300);
 	std::cout<< "Moving to next"<< std::endl;
@@ -102,8 +102,8 @@ void Agent::Move() {
 	else if(world->isMoveAble(posX, posY-1)->getValue() != 2) {
 		
 		if(!world->isMoveAble(posX, posY-1)->getVisit() ) {
-		posY -= 1;
-		beenHere = false;
+			posY -= 1;
+			beenHere = false;
 		} else {
 			posYBeenHere -= 1;
 			beenHere = true;
