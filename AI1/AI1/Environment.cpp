@@ -59,15 +59,17 @@ void Environment::draw(int _x, int _y){
 Node* Environment::SetStartNode() {
 
 	bool run = true;
+	Node* startNode = new Node(0);
 
 	while(run) {
 		int startPosX = rand() % xSize+1;
 		int startPosY = rand() % ySize+1;
-		Node* startNode = isMoveAble(startPosX, startPosY);
+		startNode = isMoveAble(startPosX, startPosY);
 		if(startNode->getValue() != 2) {
 
-			return startNode;
 			run = false;
+
 		}
 	}
+	return startNode;
 }
