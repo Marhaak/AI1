@@ -1,7 +1,9 @@
 
-#include "Include.h"
-#include "Environment.h"
 #include "Node.h"
+#include "Include.h"
+
+#include "Environment.h"
+
 
 
 Environment::Environment(int _x, int _y){
@@ -10,13 +12,15 @@ Environment::Environment(int _x, int _y){
 	ySize = _y;
 	srand( time(NULL) );
 	
-	//que?
-	map.resize( _x, std::vector<int>(_y, 0) );
-
+	std::vector<Node*> temp;
+	Node* node = new Node();
+	
 	for (int i = 0; i < _x; i++){
+		map.push_back( temp );
+
 		for (int j = 0; j < _y; j++){
-			map[i][j] = new Node;
-			map[i][j]->setValue( rand() % 3 );
+			map[i].push_back( node );
+			//map[i][j]->setValue( rand() % 3) ;
 		}
 	}
 
