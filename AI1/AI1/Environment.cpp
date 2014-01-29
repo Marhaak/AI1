@@ -9,7 +9,7 @@ Environment::Environment(int _x, int _y){
 	srand( time(NULL) );
 	
 	std::vector<Node*> temp;
-	Node* node = new Node();
+	Node* node = new Node( rand() % 3);
 	
 	for (int i = 0; i < _x; i++){
 		map.push_back( temp );
@@ -30,16 +30,11 @@ Environment::Environment(int _x, int _y){
 		}
 		std::cout << std::endl;
 	}
-
 }
-
 
 Environment::~Environment(){
 
-
 }
-<<<<<<< HEAD
-=======
 
 bool Environment::isMoveAble(int _x, int _y) {
 
@@ -50,4 +45,3 @@ bool Environment::isMoveAble(int _x, int _y) {
 	}
 	return true;
 }
->>>>>>> ca2b3d9a226aa37fb2bc022f80ce77ba8e59fbf2

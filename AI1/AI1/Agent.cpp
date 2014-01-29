@@ -3,9 +3,9 @@
 #include "Include.h"
 
 Agent::Agent(void){
-
-	steps = 0;
+	
 	running = false;
+	steps = 0;
 	posX = 0;
 	posY = 0;
 }
@@ -24,7 +24,10 @@ int Agent::Run(Environment* _world){
 		/* 
 		Rest of code here
 
-		// Spør miljø om noden agenten står ovenfor
+		// Spør miljø om noden agenten står ovenfor om status
+		// Reager etter forholdet som blir rapportert
+		// Etter regel funn endres value til node og agent skal flyttes
+
 		*/
 
 

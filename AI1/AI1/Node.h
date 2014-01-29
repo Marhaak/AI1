@@ -13,7 +13,7 @@ public:
 	// Variables
 
 	// Functions
-	Node();
+	Node(int init);
 	~Node();
 	bool enter();
 	int getValue();

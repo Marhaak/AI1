@@ -2,10 +2,10 @@
 #include "Node.h"
 
 
-Node::Node(){
+Node::Node(int init){
 
 	//Creation
-	int value = rand() % 3;
+	int value = init;
 }
 
 Node::~Node(){
@@ -16,8 +16,7 @@ Node::~Node(){
 
 bool Node::enter(){
 
-	//Assuming 0 means you can't enter the node
-	//1,2,3... for visited, clean, dirty whatevs.
+	// 0 = clean, 1 = dirty, 2 = obstacle
 	return value;
 }
 
