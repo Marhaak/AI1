@@ -76,6 +76,7 @@ void Agent::Move() {
 	//stuck
 	else{
 		cout << "Trapped bot is unhappy" << std::endl;
+		running = false;
 	}
 
 	//new position
