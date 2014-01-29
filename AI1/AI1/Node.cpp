@@ -11,7 +11,6 @@ Node::Node(int init){
 Node::~Node(){
 
 	//Destruction
-
 }
 
 bool Node::enter(){
