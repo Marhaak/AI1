@@ -6,6 +6,8 @@
 
 Environment::Environment(int _x, int _y){
 
+	xSize = _x;
+	ySize = _y;
 	srand( time(NULL) );
 	
 	//que?
@@ -37,5 +39,12 @@ Environment::~Environment(){
 
 }
 
+bool Environment::isMoveAble(int _x, int _y) {
 
-// Heisann, dette er Alf som skriver.
+	if(_x > xSize) {
+		return false;
+	} else if(_y > ySize) {
+		return false;
+	}
+	return true;
+}
