@@ -17,26 +17,17 @@ Agent::~Agent(void){
 	delete positionNode;
 }
 
-int Agent::Run(Environment* _world){
+int Agent::Run(){
 
 	running = true;
 
 	//infinite running loop :D
 	while (running) {
-
-		/* 
-		Rest of code here
-
-		// Spør miljø om noden agenten står ovenfor om status
-		// Reager etter forholdet som blir rapportert
-		// Etter regel funn endres value til node og agent skal flyttes
-
-		*/
-
+		Vacuum();
+		Move(world);
 
 		steps++;
 		if(steps > 1000) {
-
 			running = false;
 		}
 	}
@@ -46,10 +37,17 @@ int Agent::Run(Environment* _world){
 
 void Agent::Vacuum() {
 
-	Sleep(1000);
-	std::cout<< "I am vacuuming here now, soon clean"<< std::endl;
-	Sleep(1000);
-	std::cout<< "Clean!"<< std::endl;
+	if ( positionNode->getValue == 0 ) {
+		Sleep(1000);
+		cout << "Node is clean";
+	}
+	else {
+		Sleep(1000);
+		std::cout<< "I am vacuuming here now, soon clean"<< std::endl;
+		Sleep(1000);
+		std::cout<< "Clean!"<< std::endl;
+		positionNode->setValue = 0;
+	}
 }
 
 void Agent::Move(Environment* _world) {
