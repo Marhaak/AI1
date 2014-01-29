@@ -12,13 +12,11 @@ Agent::Agent(void){
 
 }
 
-
 Agent::~Agent(void){
 
 	delete this;
 
 }
-
 
 int Agent::Run(Environment* world){
 	running = true;
