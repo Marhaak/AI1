@@ -15,7 +15,7 @@ private:
 
 	// Functions
 	void Vacuum();
-	void Move();
+	void Move(Environment* _world);
 
 
 public:
