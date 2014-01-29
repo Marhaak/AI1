@@ -19,15 +19,6 @@ Environment::Environment(int _x, int _y){
 			map[i].push_back( node );
 		}
 	}
-
-	for (int i = 0; i < _x; i++){
-		for (int j = 0; j < _y; j++){
-			if (map[i][j]->getValue() == 0){cout << "  ";}
-			if (map[i][j]->getValue() == 1){cout << "~ ";}
-			if (map[i][j]->getValue() == 2){cout << "# ";}
-		}
-		cout << endl;
-	}
 }
 
 Environment::~Environment(){
@@ -48,20 +39,37 @@ Node* Environment::isMoveAble(int _x, int _y) {
 	else return map[_x][_y];
 }
 
+
+void Environment::draw(int _x, int _y){
+
+	for (int i = 0; i < _x; i++){
+		for (int j = 0; j < _y; j++){
+			
+			if(i = _x && j == _y){std::cout << "O ";}
+			else{
+				if (map[i][j]->getValue() == 0){std::cout << "  ";}
+				if (map[i][j]->getValue() == 1){std::cout << "~ ";}
+				if (map[i][j]->getValue() == 2){std::cout << "# ";}
+			}
+		}
+		std::cout << std::endl;
+	}
+}
+
 Node* Environment::SetStartNode() {
 
 	bool run = true;
+	Node* startNode = new Node(0);
 
 	while(run) {
 		int startPosX = rand() % xSize+1;
 		int startPosY = rand() % ySize+1;
-		Node* startNode = isMoveAble(startPosX, startPosY);
+		startNode = isMoveAble(startPosX, startPosY);
 		if(startNode->getValue() != 2) {
 
-			return startNode;
 			run = false;
+
 		}
 	}
-
-
+	return startNode;
 }

@@ -25,7 +25,7 @@ int Agent::Run(){
 	Vacuum();
 	//infinite to 1k running loop :D
 	while (running) {
-		
+		world->draw(posX, posY);
 		Move();
 		Vacuum();
 
