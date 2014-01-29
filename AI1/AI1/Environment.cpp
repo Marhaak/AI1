@@ -4,6 +4,8 @@
 
 Environment::Environment(int _x, int _y){
 
+	xSize = _x;
+	ySize = _y;
 	srand( time(NULL) );
 	
 	std::vector<Node*> temp;
@@ -36,3 +38,16 @@ Environment::~Environment(){
 
 
 }
+<<<<<<< HEAD
+=======
+
+bool Environment::isMoveAble(int _x, int _y) {
+
+	if(_x > xSize) {
+		return false;
+	} else if(_y > ySize) {
+		return false;
+	}
+	return true;
+}
+>>>>>>> ca2b3d9a226aa37fb2bc022f80ce77ba8e59fbf2

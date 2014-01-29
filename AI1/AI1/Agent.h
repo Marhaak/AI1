@@ -26,5 +26,6 @@ public:
 	~Agent();
 
 	int Run(Environment* _world);
+
 };
 

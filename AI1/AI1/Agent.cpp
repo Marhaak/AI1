@@ -46,13 +46,27 @@ void Agent::Vacuum() {
 	std::cout<< "Clean!"<< std::endl;
 }
 
-void Agent::Move() {
+void Agent::Move(Environment* _world) {
 
 	Sleep(1000);
 	std::cout<< "Moving to next"<< std::endl;
 	Sleep(1000);
-	/* move code here*/
-
+	// up
+	if(_world->isMoveAble(posX+1, posY)) {
+		posX += 1;
+	}
+	// right
+	if(_world->isMoveAble(posX, posY+1)) {
+		posY += 1;
+	}
+	// down
+	if(_world->isMoveAble(posX-1, posY)) {
+		posX -= 1;
+	}
+	// left
+	if(_world->isMoveAble(posX, posY-1)) {
+		posY -= 1;
+	}
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
 
 }

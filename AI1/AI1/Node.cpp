@@ -5,7 +5,7 @@
 Node::Node(){
 
 	//Creation
-	int value = 0;
+	int value = rand() % 3;
 }
 
 Node::~Node(){
