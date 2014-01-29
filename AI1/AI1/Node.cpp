@@ -20,7 +20,6 @@ bool Node::enter(){
 }
 
 int Node::getValue(){
-
 	return value;
 }
 

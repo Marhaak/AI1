@@ -11,7 +11,6 @@ Environment::Environment(int _x, int _y){
 	srand( time(NULL) );
 	
 	for (int i = 0; i < _x; i++){
-		
 		std::vector<Node*> temp;
 		map.push_back( temp );
 
