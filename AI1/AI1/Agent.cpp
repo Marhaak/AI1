@@ -28,9 +28,9 @@ int Agent::Run(){
 		world->draw(posX, posY);
 		Vacuum();
 		Move();
-		Sleep(2500);
+		//Sleep(2500);
 		
-		steps++;
+		//steps++;
 		if(steps > 1000) {
 			running = false;
 		}
@@ -44,14 +44,14 @@ int Agent::Run(){
 void Agent::Vacuum() {
 
 	if ( positionNode->getValue() == 0 ) {
-		Sleep(300);
+		//Sleep(300);
 		cout << "Node is clean" << std::endl;
 	}
 	else {
 
-		Sleep(300);
+		//Sleep(300);
 		std::cout<< "I am vacuuming here now, soon clean...";
-		Sleep(300);
+		//Sleep(300);
 		std::cout<< " Clean!"<< std::endl;
 
 		positionNode->setValue(0);
@@ -60,7 +60,7 @@ void Agent::Vacuum() {
 
 void Agent::Move() {
 
-	Sleep(300);
+	//Sleep(300);
 	std::cout<< "Moving to next"<< std::endl;
 
 	//Sleep(1000);
@@ -120,7 +120,7 @@ void Agent::Move() {
 	//}
 
 	srand( time(NULL) );
-	int randomz = rand() % 3;
+	int randomz = rand() % 4;
 	if(randomz == 0) { // Down
 
 		if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
@@ -156,7 +156,7 @@ void Agent::Move() {
 
 	positionNode->visit();
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
-	Sleep(1000);
+	//Sleep(1000);
 
 }
 
