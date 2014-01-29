@@ -12,7 +12,6 @@ Agent::Agent(void){
 
 Agent::~Agent(void){
 
-
 }
 
 int Agent::Run(Environment* _world){

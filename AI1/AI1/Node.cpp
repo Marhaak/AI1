@@ -19,7 +19,6 @@ bool Node::enter(){
 	//Assuming 0 means you can't enter the node
 	//1,2,3... for visited, clean, dirty whatevs.
 	return value;
-
 }
 
 int Node::getValue(){
