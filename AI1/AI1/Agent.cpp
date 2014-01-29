@@ -17,12 +17,9 @@ Agent::~Agent(void){
 
 }
 
-<<<<<<< HEAD
-int Agent::Run(Environment* world){
-=======
 
 int Agent::Run(Environment* _world){
->>>>>>> 25ea51667c0321f7b4fe60a47725066798198432
+
 	running = true;
 
 	//infinite running loop :D
