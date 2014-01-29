@@ -7,6 +7,7 @@ class Node {
 private:
 	// Variables
 	int value;
+	bool visited;
 
 	// Functions
 
@@ -20,5 +21,6 @@ public:
 	bool enter();
 	int getValue();
 	int setValue(int _new);
-
+	void visit();
+	bool getVisit();
 };

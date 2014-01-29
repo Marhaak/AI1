@@ -10,9 +10,9 @@ int main(){
 	Node* startNode = nullptr;
 
 	environment = new Environment();
-	startNode = environment->SetStartNode();
-	agent = new Agent(environment, startNode);
-
+	
+	agent = new Agent(environment);
+	
 	if(agent->Run() == 1) {
 
 		std::cout<< "It is very clean now!"<< std::endl;

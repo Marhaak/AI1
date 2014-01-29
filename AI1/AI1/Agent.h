@@ -24,7 +24,7 @@ public:
 	// Variables
 
 	// Functions
-	Agent(Environment* _world, Node* _starPos);
+	Agent(Environment* _world);
 	~Agent();
 
 	int Run();

@@ -4,14 +4,14 @@
 
 using namespace std;
 
-Agent::Agent(Environment* _world, Node* _startPos){
+Agent::Agent(Environment* _world){
 	
 	running = false;
 	steps = 0;
-	posX = 0;
-	posY = 0;
+	posX = 3;
+	posY = 2;
 	world = _world;
-	positionNode = _startPos;
+	positionNode = _world->SetStartNode();
 }
 
 Agent::~Agent(void){
@@ -22,17 +22,17 @@ Agent::~Agent(void){
 int Agent::Run(){
 
 	running = true;
-	Vacuum();
 	//infinite to 1k running loop :D
 	while (running) {
 		world->draw(posX, posY);
-		Move();
 		Vacuum();
-
+		Move();
+		
 		steps++;
 		if(steps > 1000) {
 			running = false;
 		}
+		system("CLS");
 	}
 	return 1;
 };
@@ -40,41 +40,41 @@ int Agent::Run(){
 void Agent::Vacuum() {
 
 	if ( positionNode->getValue() == 0 ) {
-		Sleep(1000);
-		cout << "Node is clean";
+		Sleep(300);
+		cout << "Node is clean" << std::endl;
 	}
 	else {
-		Sleep(1000);
-		std::cout<< "I am vacuuming here now, soon clean"<< std::endl;
-		Sleep(1000);
-		std::cout<< "Clean!"<< std::endl;
+		Sleep(300);
+		std::cout<< "I am vacuuming here now, soon clean...";
+		Sleep(300);
+		std::cout<< " Clean!"<< std::endl;
 		positionNode->setValue(0);
 	}
 }
 
 void Agent::Move() {
 
-	Sleep(1000);
+	Sleep(300);
 	std::cout<< "Moving to next"<< std::endl;
 	Sleep(1000);
 
-	// up
-	if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
+	// Down
+	if(world->isMoveAble(posX+1, posY)->getValue() != 2 && !world->isMoveAble(posX+1, posY)->getVisit() ) {
 		posX += 1;
 	}
 
 	// right
-	else if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
+	else if(world->isMoveAble(posX, posY+1)->getValue() != 2  && !world->isMoveAble(posX, posY+1)->getVisit()) {
 		posY += 1;
 	}
 
 	// down
-	else if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
+	else if(world->isMoveAble(posX-1, posY)->getValue() != 2  && !world->isMoveAble(posX-1, posY)->getVisit()) {
 		posX -= 1;
 	}
 
 	// left
-	else if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
+	else if(world->isMoveAble(posX, posY-1)->getValue() != 2  && !world->isMoveAble(posX, posY-1)->getVisit()) {
 		posY -= 1;
 	}
 	//stuck
@@ -85,7 +85,9 @@ void Agent::Move() {
 
 	//new position
 	positionNode = world->isMoveAble(posX, posY);
+	positionNode->visit();
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
+	Sleep(1000);
 }
 
 
