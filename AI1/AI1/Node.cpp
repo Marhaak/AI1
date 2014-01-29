@@ -5,7 +5,7 @@
 Node::Node(int init){
 
 	//Creation
-	int value = init;
+	value = init;
 }
 
 Node::~Node(){
