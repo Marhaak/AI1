@@ -1,9 +1,11 @@
 #include "Node.h"
 #include "Include.h"
 #include "Environment.h"
+using namespace std;
 
 Environment::Environment(int _x, int _y){
 
+	dummy = new Node(2);
 	xSize = _x;
 	ySize = _y;
 	srand( time(NULL) );
@@ -36,12 +38,12 @@ Environment::~Environment(){
 
 }
 
-bool Environment::isMoveAble(int _x, int _y) {
+Node* Environment::isMoveAble(int _x, int _y) {
 
 	if(_x > xSize) {
-		return false;
+		return nullptr;
 	} else if(_y > ySize) {
-		return false;
+		return nullptr;
 	}
-	return true;
+	return map[_x][_y];
 }

@@ -12,6 +12,7 @@ private:
 	int steps;
 	int posX;
 	int posY;
+	Node* positionNode;
 
 	// Functions
 	void Vacuum();

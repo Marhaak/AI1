@@ -1,6 +1,6 @@
 #include "Include.h"
 #include "Node.h"
-
+using namespace std;
 
 Node::Node(int init){
 
