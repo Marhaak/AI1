@@ -58,27 +58,31 @@ void Agent::Move() {
 	Sleep(1000);
 
 	// up
-	positionNode = world->isMoveAble(posX+1, posY);
-	if(positionNode != nullptr) {
+	if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
 		posX += 1;
 	}
 
 	// right
-	positionNode = world->isMoveAble(posX, posY+1);
-	if(positionNode != nullptr) {
+	else if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
 		posY += 1;
 	}
 
 	// down
-	positionNode = world->isMoveAble(posX-1, posY);
-	if(positionNode != nullptr) {
+	else if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
 		posX -= 1;
 	}
 
 	// left
-	positionNode = world->isMoveAble(posX, posY-1);
-	if(positionNode != nullptr) {
+	else if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
 		posY -= 1;
 	}
+	//stuck
+	else{
+		cout << "Trapped bot is unhappy" << std::endl;
+		running = false;
+	}
+
+	//new position
+	positionNode = world->isMoveAble(posX, posY);
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
 }
