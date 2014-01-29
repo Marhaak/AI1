@@ -24,6 +24,7 @@ int Agent::Run(){
 
 	//infinite running loop :D
 	while (running) {
+		world->draw(posX, posY);
 		Vacuum();
 		Move();
 
