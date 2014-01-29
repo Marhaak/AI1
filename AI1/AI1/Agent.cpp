@@ -3,14 +3,14 @@
 #include "Include.h"
 using namespace std;
 
-Agent::Agent(Environment* _world){
+Agent::Agent(Environment* _world, Node* _startPos){
 	
 	running = false;
 	steps = 0;
 	posX = 0;
 	posY = 0;
 	world = _world;
-	positionNode = nullptr;
+	positionNode = _startPos;
 }
 
 Agent::~Agent(void){
@@ -21,11 +21,12 @@ Agent::~Agent(void){
 int Agent::Run(){
 
 	running = true;
-
-	//infinite running loop :D
+	Vacuum();
+	//infinite to 1k running loop :D
 	while (running) {
+		
+		Move();
 		Vacuum();
-		Move(world);
 
 		steps++;
 		if(steps > 1000) {
@@ -38,7 +39,7 @@ int Agent::Run(){
 
 void Agent::Vacuum() {
 
-	if ( positionNode->getValue == 0 ) {
+	if ( positionNode->getValue() == 0 ) {
 		Sleep(1000);
 		cout << "Node is clean";
 	}
@@ -47,7 +48,7 @@ void Agent::Vacuum() {
 		std::cout<< "I am vacuuming here now, soon clean"<< std::endl;
 		Sleep(1000);
 		std::cout<< "Clean!"<< std::endl;
-		positionNode->setValue = 0;
+		positionNode->setValue(0);
 	}
 }
 
@@ -80,3 +81,5 @@ void Agent::Move() {
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
 
 }
+
+

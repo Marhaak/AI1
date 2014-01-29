@@ -47,3 +47,21 @@ Node* Environment::isMoveAble(int _x, int _y) {
 	}
 	return map[_x][_y];
 }
+
+Node* Environment::SetStartNode() {
+
+	bool run = true;
+
+	while(run) {
+		int startPosX = rand() % xSize+1;
+		int startPosY = rand() % ySize+1;
+		Node* startNode = isMoveAble(startPosX, startPosY);
+		if(startNode->getValue() != 2) {
+
+			return startNode;
+			run = false;
+		}
+	}
+
+
+}

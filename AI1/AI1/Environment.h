@@ -12,6 +12,7 @@ private:
 	Node* dummy;
 
 	// Functions
+	
 
 public:
 
@@ -22,5 +23,6 @@ public:
 	Environment(int _x = 5, int _y = 5);
 	~Environment();
 	Node* isMoveAble(int x, int y);
+	Node* SetStartNode();
 };
 
