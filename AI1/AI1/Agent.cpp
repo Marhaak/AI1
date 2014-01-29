@@ -1,6 +1,7 @@
 #include "Agent.h"
 #include "Environment.h"
 #include "Include.h"
+
 using namespace std;
 
 Agent::Agent(Environment* _world){
@@ -25,20 +26,19 @@ int Agent::Run(){
 	//infinite running loop :D
 	while (running) {
 		Vacuum();
-		Move(world);
+		Move();
 
 		steps++;
 		if(steps > 1000) {
 			running = false;
 		}
 	}
-
 	return 1;
 };
 
 void Agent::Vacuum() {
 
-	if ( positionNode->getValue == 0 ) {
+	if ( positionNode->getValue() == 0 ) {
 		Sleep(1000);
 		cout << "Node is clean";
 	}
@@ -47,7 +47,7 @@ void Agent::Vacuum() {
 		std::cout<< "I am vacuuming here now, soon clean"<< std::endl;
 		Sleep(1000);
 		std::cout<< "Clean!"<< std::endl;
-		positionNode->setValue = 0;
+		positionNode->setValue(0);
 	}
 }
 
@@ -62,21 +62,23 @@ void Agent::Move() {
 	if(positionNode != nullptr) {
 		posX += 1;
 	}
+
 	// right
 	positionNode = world->isMoveAble(posX, posY+1);
 	if(positionNode != nullptr) {
 		posY += 1;
 	}
+
 	// down
 	positionNode = world->isMoveAble(posX-1, posY);
 	if(positionNode != nullptr) {
 		posX -= 1;
 	}
+
 	// left
 	positionNode = world->isMoveAble(posX, posY-1);
 	if(positionNode != nullptr) {
 		posY -= 1;
 	}
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
-
 }

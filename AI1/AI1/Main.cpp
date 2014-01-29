@@ -5,9 +5,6 @@
 using namespace std;
 
 int main(){
-	char stop;
-
-
 	Environment* environment = NULL;
 	Agent* agent = NULL;
 
@@ -19,8 +16,8 @@ int main(){
 		std::cout<< "It is very clean now!"<< std::endl;
 	}
 
-	std::cin >> stop;
-
+	cin.get();
+	
 	delete environment;
 	delete agent;
 

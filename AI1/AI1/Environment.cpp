@@ -11,7 +11,6 @@ Environment::Environment(int _x, int _y){
 	srand( time(NULL) );
 	
 	for (int i = 0; i < _x; i++){
-		
 		std::vector<Node*> temp;
 		map.push_back( temp );
 
@@ -23,11 +22,9 @@ Environment::Environment(int _x, int _y){
 
 	for (int i = 0; i < _x; i++){
 		for (int j = 0; j < _y; j++){
-			
 			if (map[i][j]->getValue() == 0){std::cout << "  ";}
 			if (map[i][j]->getValue() == 1){std::cout << "~ ";}
 			if (map[i][j]->getValue() == 2){std::cout << "# ";}
-
 		}
 		std::cout << std::endl;
 	}
