@@ -141,20 +141,9 @@ void Agent::Move() {
 	}
 	else if(randomz == 3) { // Up
 
-<<<<<<< HEAD
 		if(world->isMoveAble(posX-1, posY)->getValue() != 2) {
 			posY -= 1;
-=======
-	// left
-	else if(world->isMoveAble(posX, posY-1)->getValue() != 2) {
-		
-		if(!world->isMoveAble(posX, posY-1)->getVisit() ) {
-			posY -= 1;
-			beenHere = false;
-		} else {
-			posYBeenHere -= 1;
-			beenHere = true;
->>>>>>> a5ab49e8b8cf0d0ff55600d09829f9c9c15e2cbb
+
 		}
 	}
 
