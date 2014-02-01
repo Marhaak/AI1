@@ -15,6 +15,7 @@ private:
 	int posY;
 	int posXBeenHere;
 	int posYBeenHere;
+	bool moveToWhere[3];
 	Node* positionNode;
 	Environment* world;
 
