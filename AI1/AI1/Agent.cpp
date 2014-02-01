@@ -73,40 +73,47 @@ void Agent::Move() {
 	}
 
 	
-	int randomz = rand() % 4;
-
-	if(randomz == 0) { // Down
-		cout<< "Down wards\n";
-		if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
-			posX += 1;
-		} else {
-				cout<< "Its a wall\n";
-			}
-	} 
-	else if(randomz == 1) { // Right
-		cout<< "Right\n";
-		if(world->isMoveAble(posX, posY+1)->getValue() != 2) {
-			posY += 1;
-		} else {
-				cout<< "Its a wall\n";
-			}
-	}
-	else if(randomz == 2) { // Up
-		cout<< "Up wards\n";
-		if(world->isMoveAble(posX-1, posY)->getValue() != 2) {
-			posX -= 1;
-		} else {
-				cout<< "Its a wall\n";
-			}
-	}
-	else if(randomz == 3) { // Left
-		cout<< "Left\n";
-		if(world->isMoveAble(posX, posY-1)->getValue() != 2) {
-			posY -= 1;
-
-		} else {
-				cout<< "Its a wall\n";
-			}
+	
+	bool test = true;
+	int randomz;
+	while( test ) {
+		randomz = rand() % 4;
+		if(randomz == 0) { // Down
+			cout<< "Down wards\n";
+			if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
+				posX += 1;
+				test = false;
+			} else {
+					cout<< "Its a wall\n";
+				}
+		} 
+		else if(randomz == 1) { // Right
+			cout<< "Right\n";
+			if(world->isMoveAble(posX, posY+1)->getValue() != 2) {
+				posY += 1;
+				test = false;
+			} else {
+					cout<< "Its a wall\n";
+				}
+		}
+		else if(randomz == 2) { // Up
+			cout<< "Up wards\n";
+			if(world->isMoveAble(posX-1, posY)->getValue() != 2) {
+				posX -= 1;
+				test = false;
+			} else {
+					cout<< "Its a wall\n";
+				}
+		}
+		else if(randomz == 3) { // Left
+			cout<< "Left\n";
+			if(world->isMoveAble(posX, posY-1)->getValue() != 2) {
+				posY -= 1;
+				test = false;
+			} else {
+					cout<< "Its a wall\n";
+				}
+		}
 	}
 
 	//new position
@@ -118,7 +125,7 @@ void Agent::Move() {
 
 	positionNode->visit();
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
-	Sleep(1000);
+	Sleep(2000);
 	for(int i = 0; i < 4; i++) {
 
 		moveToWhere[i] = false;
