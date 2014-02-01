@@ -74,15 +74,15 @@ void Agent::Move() {
 
 	
 	
-	bool test = true;
+	bool moveAble = true;
 	int randomz;
-	while( test ) {
+	while( moveAble ) {
 		randomz = rand() % 4;
 		if(randomz == 0) { // Down
 			cout<< "Down wards\n";
 			if(world->isMoveAble(posX+1, posY)->getValue() != 2) {
 				posX += 1;
-				test = false;
+				moveAble = false;
 			} else {
 					cout<< "Its a wall\n";
 				}
@@ -91,7 +91,7 @@ void Agent::Move() {
 			cout<< "Right\n";
 			if(world->isMoveAble(posX, posY+1)->getValue() != 2) {
 				posY += 1;
-				test = false;
+				moveAble = false;
 			} else {
 					cout<< "Its a wall\n";
 				}
@@ -100,7 +100,7 @@ void Agent::Move() {
 			cout<< "Up wards\n";
 			if(world->isMoveAble(posX-1, posY)->getValue() != 2) {
 				posX -= 1;
-				test = false;
+				moveAble = false;
 			} else {
 					cout<< "Its a wall\n";
 				}
@@ -109,7 +109,7 @@ void Agent::Move() {
 			cout<< "Left\n";
 			if(world->isMoveAble(posX, posY-1)->getValue() != 2) {
 				posY -= 1;
-				test = false;
+				moveAble = false;
 			} else {
 					cout<< "Its a wall\n";
 				}
