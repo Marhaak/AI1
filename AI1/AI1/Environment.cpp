@@ -61,7 +61,18 @@ void Environment::draw(int _x, int _y){
 		}
 		std::cout << std::endl;
 	}
-	
+
+
+	dirtCounter++;
+	if( dirtCounter % 5 == 0) {
+		cout<< "New dirt!!!\n";
+		dummy = SetStartNode();
+		dummy->setValue(1);
+	}
+	//std::cout << "Bot virtual Pos:" << _x << _y << std::endl;
+	//std::cout << "Bot real Pos:" << _x+botX << _y+botY << endl;
+	//Sleep(5000);
+
 }
 
 Node* Environment::SetStartNode() {
