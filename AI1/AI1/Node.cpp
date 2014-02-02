@@ -1,5 +1,6 @@
 #include "Include.h"
 #include "Node.h"
+
 using namespace std;
 
 Node::Node(int init){
@@ -10,16 +11,15 @@ Node::Node(int init){
 }
 
 Node::~Node(){
-
 	//Destruction
 }
+
 
 int Node::getValue(){
 	return value;
 }
 
 int Node::setValue(int _new){
-
 	value = _new;
 	return value;
 }
@@ -29,6 +29,5 @@ void Node::visit(){
 }
 
 bool Node::getVisit(){
-
 	return visited;
 }

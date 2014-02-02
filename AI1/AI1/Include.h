@@ -1,6 +1,5 @@
 #pragma once
 
-
 //Include
 #include <stdlib.h>
 #include <time.h>
