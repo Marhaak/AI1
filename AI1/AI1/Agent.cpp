@@ -36,7 +36,6 @@ int Agent::Run(){
 		}
 	//	cin.get();
 		system("CLS");
-		
 	}
 	return 1;
 };
@@ -64,7 +63,6 @@ void Agent::Move() {
 	std::cout<< "Moving to next - ";
 
 	//Sleep(1000);
-
 	// TODO: Check for wals, dont move towards them!
 
 	for(int i = 0; i < 4; i++) {
@@ -72,8 +70,6 @@ void Agent::Move() {
 
 	}
 
-	
-	
 	bool moveAble = true;
 	int randomz;
 	while( moveAble ) {
@@ -125,12 +121,10 @@ void Agent::Move() {
 
 	positionNode->visit();
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
-	Sleep(2000);
+	Sleep(50);
 	for(int i = 0; i < 4; i++) {
 
 		moveToWhere[i] = false;
 	}
 
 }
-
-

@@ -39,7 +39,6 @@ Node* Environment::isMoveAble(int _x, int _y) {
 	else return map[_x+botX][_y+botY];
 }
 
-
 void Environment::draw(int _x, int _y){
 
 	for (int i = 0; i < xSize; i++){

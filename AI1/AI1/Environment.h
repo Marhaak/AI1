@@ -18,7 +18,6 @@ private:
 
 public:
 
-
 	// Variables
 
 	// Functions
