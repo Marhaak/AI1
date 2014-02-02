@@ -6,14 +6,9 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 	
-	//int sleep = 1000;
-
 	Environment* environment = nullptr;
 	Agent* agent = nullptr;
 	Node* startNode = nullptr;
-	
-	
-	
 
 	//taking commandline parameter to set up size of environment
 	if (argc > 2){
@@ -31,7 +26,6 @@ int main(int argc, char* argv[]){
 
 
 	//Cleaning up
-
 	delete environment;
 	delete agent;
 

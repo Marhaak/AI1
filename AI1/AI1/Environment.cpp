@@ -1,6 +1,7 @@
 #include "Node.h"
 #include "Include.h"
 #include "Environment.h"
+
 using namespace std;
 
 Environment::Environment(int _x, int _y){
@@ -19,7 +20,6 @@ Environment::Environment(int _x, int _y){
 
 			Node* node = new Node( rand() % 3 );
 			map[i].push_back( node );
-
 		}
 	}
 }
@@ -64,10 +64,14 @@ void Environment::draw(int _x, int _y){
 
 
 	dirtCounter++;
-	if( dirtCounter % 5 == 0) {
+	if( dirtCounter!= 0 && dirtCounter % 5 == 0) {
+		int xPosHolder = botX;
+		int yPosHolder = botY;
 		cout<< "New dirt!!!\n";
 		dummy = SetStartNode();
 		dummy->setValue(1);
+		botX = xPosHolder;
+		botY = yPosHolder;
 	}
 	//std::cout << "Bot virtual Pos:" << _x << _y << std::endl;
 	//std::cout << "Bot real Pos:" << _x+botX << _y+botY << endl;
@@ -75,18 +79,15 @@ void Environment::draw(int _x, int _y){
 
 }
 
-
-
 Node* Environment::SetStartNode() {
 
 	Node* startNode = new Node(2);
-
+	
 	//set random start node that is not a wall.
 	while(startNode->getValue() == 2) {
-		botX = rand() % xSize;
+		botX= rand() % xSize;
 		botY = rand() % ySize;
 		startNode = map[botX][botY];
 	}
-	
 	return startNode;
 }
