@@ -116,6 +116,12 @@ void Agent::Move() {
 					cout<< "Its a wall\n";
 				}
 		}
+
+		else {
+
+			cout<< "You are now stuck, getting a new position\n";
+			positionNode = world->SetStartNode();
+		}
 	}
 
 	positionNode = world->isMoveAble(posX, posY);
