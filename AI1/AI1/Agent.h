@@ -20,8 +20,8 @@ private:
 	Environment* world;
 
 	// Functions
-	void Vacuum();
-	void Move();
+	void Vacuum();	// This function will vacuum if there is dirty
+	void Move();	// This function will move the agent to a new place
 	
 
 public:
@@ -31,7 +31,7 @@ public:
 	Agent(Environment* _world);
 	~Agent();
 
-	int Run();
+	int Run();	// The main loop of the agent
 
 };
 

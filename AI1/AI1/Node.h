@@ -19,8 +19,8 @@ public:
 	Node(int init);
 	~Node();
 	bool enter();
-	int getValue();
-	int setValue(int _new);
-	void visit();
-	bool getVisit();
+	int getValue();			// Returns the valus of the node
+	int setValue(int _new);	// Sets a new value
+	void visit();			// Sets the node til visited
+	bool getVisit();		// Returns the visit status
 };
