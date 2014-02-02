@@ -14,11 +14,6 @@ Node::~Node(){
 	//Destruction
 }
 
-bool Node::enter(){
-
-	// 0 = clean, 1 = dirty, 2 = obstacle
-	return value;
-}
 
 int Node::getValue(){
 	return value;
