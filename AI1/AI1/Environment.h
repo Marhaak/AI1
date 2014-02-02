@@ -10,6 +10,7 @@ private:
 	int ySize;
 	int botX;
 	int botY;
+	int dirtCounter;	// Make a new dirt on the map when dirtCounter % x == 0
 	std::vector< std::vector<Node*> > map; // The map that the agents lives in
 	Node* dummy;
 

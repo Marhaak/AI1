@@ -60,20 +60,11 @@ void Agent::Vacuum() {
 
 void Agent::Move() {
 
-	//Sleep(300);
+	
 	std::cout<< "Moving to next - ";
 
 	//Sleep(1000);
 
-	// TODO: Check for wals, dont move towards them!
-
-	for(int i = 0; i < 4; i++) {
-
-
-	}
-
-	
-	
 	bool moveAble = true;
 	int randomz;
 	while( moveAble ) {
@@ -116,21 +107,12 @@ void Agent::Move() {
 		}
 	}
 
-	//new position
-	/*if(!beenHere) {*/
-		positionNode = world->isMoveAble(posX, posY);
-	/*} else {
-		positionNode = world->isMoveAble(posXBeenHere, posYBeenHere);
-	}*/
+	positionNode = world->isMoveAble(posX, posY);
 
 	positionNode->visit();
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
 	Sleep(2000);
-	for(int i = 0; i < 4; i++) {
-
-		moveToWhere[i] = false;
-	}
-
+	
 }
 
 
