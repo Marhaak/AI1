@@ -1,7 +1,7 @@
-
 #include "Include.h"
 #include "Agent.h"
 #include "Environment.h"
+
 using namespace std;
 
 int main(int argc, char* argv[]){
@@ -23,7 +23,6 @@ int main(int argc, char* argv[]){
 	} else {
 		cout << "Can not clean everything!" << endl;
 	}
-
 
 	delete environment;
 	delete agent;
