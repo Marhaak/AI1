@@ -6,10 +6,13 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 	
+	//int sleep = 1000;
 
 	Environment* environment = nullptr;
 	Agent* agent = nullptr;
 	Node* startNode = nullptr;
+	
+	
 	
 
 	//taking commandline parameter to set up size of environment
@@ -20,7 +23,6 @@ int main(int argc, char* argv[]){
 	agent = new Agent(environment);
 	
 	//running.
-
 	if(agent->Run() == 1) {
 		cout << "It is very clean now!" << endl;
 	} else {

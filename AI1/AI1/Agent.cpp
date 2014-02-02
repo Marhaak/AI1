@@ -67,7 +67,7 @@ void Agent::Move() {
 	std::cout<< "Moving to next - ";
 
 	//Sleep(1000);
-
+	// TODO: Remove completed TODOs :P
 	// TODO: Check for wals, dont move towards them!
 
 	for(int i = 0; i < 4; i++) {
@@ -123,11 +123,10 @@ void Agent::Move() {
 	positionNode->visit();
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
 
-	Sleep(2000);
+	Sleep(sleep);
 	
 
 	
-	Sleep(200);
 	for(int i = 0; i < 4; i++) {
 
 		moveToWhere[i] = false;
