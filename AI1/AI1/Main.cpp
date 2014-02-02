@@ -29,8 +29,7 @@ int main(int argc, char* argv[]){
 
 
 	//Cleaning up
-=======
->>>>>>> b37c7c9b8beb4c36d30d0549c8372cb7e4349211
+
 	delete environment;
 	delete agent;
 
