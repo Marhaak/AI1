@@ -5,7 +5,6 @@
 #include <time.h>
 #include <iostream>
 #include <vector>
-
 #include <windows.h>
 
-extern int sleep = 1000;
+extern int sleep;

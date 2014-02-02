@@ -4,6 +4,8 @@
 
 using namespace std;
 
+int sleep = 300;
+
 int main(int argc, char* argv[]){
 	
 	Environment* environment = nullptr;
