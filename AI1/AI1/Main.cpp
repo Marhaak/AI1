@@ -5,6 +5,7 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
+	
 	Environment* environment = NULL;
 	Agent* agent = NULL;
 	Node* startNode = nullptr;
@@ -18,7 +19,7 @@ int main(int argc, char* argv[]){
 		cout<< "It is very clean now!"<< endl;
 	}
 	
-	//cin.get();
+	//cin.get();S
 
 	delete environment;
 	delete agent;

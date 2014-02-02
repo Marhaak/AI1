@@ -121,10 +121,9 @@ void Agent::Move() {
 
 	positionNode->visit();
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
-	Sleep(50);
+	Sleep(10);
 	for(int i = 0; i < 4; i++) {
 
 		moveToWhere[i] = false;
 	}
-
 }
