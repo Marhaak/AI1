@@ -18,7 +18,6 @@ public:
 	// Functions
 	Node(int init);
 	~Node();
-	bool enter();
 	int getValue();			// Returns the valus of the node
 	int setValue(int _new);	// Sets a new value
 	void visit();			// Sets the node til visited
