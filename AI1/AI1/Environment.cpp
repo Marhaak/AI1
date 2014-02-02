@@ -1,6 +1,7 @@
 #include "Node.h"
 #include "Include.h"
 #include "Environment.h"
+
 using namespace std;
 
 Environment::Environment(int _x, int _y){
@@ -19,7 +20,6 @@ Environment::Environment(int _x, int _y){
 
 			Node* node = new Node( rand() % 3 );
 			map[i].push_back( node );
-
 		}
 	}
 }
@@ -79,8 +79,6 @@ void Environment::draw(int _x, int _y){
 
 }
 
-
-
 Node* Environment::SetStartNode() {
 
 	Node* startNode = new Node(2);
@@ -91,7 +89,5 @@ Node* Environment::SetStartNode() {
 		botY = rand() % ySize;
 		startNode = map[botX][botY];
 	}
-	
-	
 	return startNode;
 }
