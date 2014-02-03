@@ -26,6 +26,8 @@ int main(int argc, char* argv[]){
 	//running.
 	if(agent->Run() == 1) {
 		cout << "It is very clean now!" << endl;
+		environment->GetScore();
+		cin.get();
 	} else {
 		cout << "Can not clean everything!" << endl;
 	}

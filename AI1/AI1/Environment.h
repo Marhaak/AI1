@@ -30,6 +30,7 @@ public:
 	Node* isMoveAble(int x, int y); // Return the node that the agent can move to, or a dummy node
 	void draw(int _x, int _y);		// Draws the map
 	Node* SetStartNode();			// Returns a startnode that the agent will start on
-	bool AddCleanedNode();
+	void AddCleanedNode();
 	void SetNumSteps(int _i);
+	void GetScore();
 };

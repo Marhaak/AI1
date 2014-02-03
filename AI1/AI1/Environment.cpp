@@ -9,6 +9,7 @@ Environment::Environment(int _x, int _y){
 	xSize = _x;
 	ySize = _y;
 	numOfDirts = 0;
+	NumOfDirtsCleaned = 0;
 	srand( time(NULL) );
 	
 	for (int i = 0; i < _x; i++){
@@ -26,6 +27,8 @@ Environment::Environment(int _x, int _y){
 			}
 		}
 	}
+	cout<< "num of d: "<< numOfDirts<< "\n";
+	cin.get();
 }
 
 Environment::~Environment(){
@@ -66,7 +69,7 @@ void Environment::draw(int _x, int _y){
 		std::cout << std::endl;
 	}
 
-
+	cin.get();
 	dirtCounter++;
 	if( dirtCounter!= 0 && dirtCounter % 5 == 0) {
 		int xPosHolder = botX;
@@ -94,15 +97,19 @@ Node* Environment::SetStartNode() {
 	return startNode;
 }
 
-bool Environment::AddCleanedNode() {
+void Environment::AddCleanedNode() {
 	NumOfDirtsCleaned++;
-	if(numOfDirts == NumOfDirtsCleaned) {
+	cout<< "Num dirt: "<<numOfDirts<< " Num dirt C: "<< NumOfDirtsCleaned<< "\n";
+	//cin.get();
 
-		return true;
-	}
-	return false;
+	numOfDirts--;
 }
 
 void Environment::SetNumSteps(int _i) {
 	numOfStepsUsed = _i;
+}
+
+void Environment::GetScore() {
+
+	cout<< "\n\n\n\n Score: "<< numOfDirts<< " is left after 1000 steps!\n On a "<< xSize<< " x "<< ySize<< "big map\n";
 }
