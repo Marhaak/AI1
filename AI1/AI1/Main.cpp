@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int sleep = 150;
+int sleep = 300;
 
 
 int main(int argc, char* argv[]){
@@ -13,8 +13,8 @@ int main(int argc, char* argv[]){
 	Agent* agent = nullptr;
 	Node* startNode = nullptr;
 	
-	int xCordForEnvironment = 10;
-	int yCordForEnvironment = 10;
+	int xCordForEnvironment = 11;
+	int yCordForEnvironment = 11;
 
 	//taking commandline parameter to set up size of environment
 	if (argc > 2){

@@ -67,7 +67,7 @@ void Environment::draw(int _x, int _y){
 		std::cout << std::endl;
 	}
 
-	//cin.get();
+
 	dirtCounter++;
 	if( dirtCounter!= 0 && dirtCounter % 5 == 0) {
 		int xPosHolder = botX;
