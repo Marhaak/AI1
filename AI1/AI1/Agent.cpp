@@ -100,7 +100,7 @@ void Agent::Vacuum() {
 
 void Agent::Move() {
 
-	Sleep(sleep);
+	//Sleep(sleep);
 	std::cout<< "Moving to next - ";
 
 

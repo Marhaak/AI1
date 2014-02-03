@@ -16,7 +16,7 @@ private:
 	int numOfStepsUsed;		// Will hold the number of steps the agent used to clean the area
 	std::vector< std::vector<Node*> > map; // The map that the agents lives in
 	Node* dummy;
-
+	
 	// Functions
 	
 
