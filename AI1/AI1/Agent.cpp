@@ -58,6 +58,11 @@ void Agent::Vacuum() {
 		std::cout<< " Clean!"<< std::endl;
 
 		positionNode->setValue(0);
+		if(world->AddCleanedNode()) {
+
+			world->SetNumSteps(steps);
+			running = false;
+		}
 	}
 }
 
@@ -66,14 +71,6 @@ void Agent::Move() {
 	
 	std::cout<< "Moving to next - ";
 
-	//Sleep(1000);
-	// TODO: Remove completed TODOs :P
-	// TODO: Check for wals, dont move towards them!
-
-	for(int i = 0; i < 4; i++) {
-
-
-	}
 
 
 	bool moveAble = true;
@@ -131,10 +128,4 @@ void Agent::Move() {
 
 	Sleep(sleep);
 	
-
-	
-	for(int i = 0; i < 4; i++) {
-
-		moveToWhere[i] = false;
-	}
 }

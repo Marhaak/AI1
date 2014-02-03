@@ -6,5 +6,6 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
+#include <deque>
 
 extern int sleep;
