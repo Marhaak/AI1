@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int sleep = 300;
+int sleep = 1500;
 
 
 int main(int argc, char* argv[]){
