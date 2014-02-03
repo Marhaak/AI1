@@ -21,13 +21,18 @@ Agent::Agent(Environment* _world){
 	std::deque<Node*> temp;
 	//Y
 	for (int y = 0; y < 3; y++){
-		temp.push_back( new Node(1) );
+		temp.push_back( new Node(3) );
 	}
 	//X
 	for (int x = 0; x < 3; x++){
 		internalMap.push_back(temp);
 	}
 	internalMap[1][1] = positionNode;
+	
+	internalMap[0][1] = world->isMoveAble(posX-1, posY); //up
+	internalMap[2][1] = world->isMoveAble(posX+1, posY); //down
+	internalMap[1][0] = world->isMoveAble(posX, posY-1); //left
+	internalMap[1][2] = world->isMoveAble(posX, posY+1); //right
 	
 	internOffsetX = 1;
 	internOffsetY = 1;
@@ -46,11 +51,12 @@ void Agent::Draw(int x, int y){
 		for (unsigned int j = 0; j < internalMap[i].size(); j++){
 
 			if (i == x+internOffsetX && j == y+internOffsetY){
-				std::cout << "0";
+				std::cout << "A";
 			} else {
-				if (internalMap[i][j]->getValue() == 0){std::cout << "x";}
-				if (internalMap[i][j]->getValue() == 1){std::cout << " ";}
+				if (internalMap[i][j]->getValue() == 0){std::cout << " ";}
+				if (internalMap[i][j]->getValue() == 1){std::cout << "~";}
 				if (internalMap[i][j]->getValue() == 2){std::cout << "#";}
+				if (internalMap[i][j]->getValue() == 3){std::cout << "x";}
 			}
 		}
 		std::cout << std::endl;
@@ -152,45 +158,57 @@ void Agent::Move() {
 		}
 	}
 
-	
-	//Add to internal map, for move to the Left
-	if(posY + internOffsetY < 0){
-		internOffsetY++;
-		for(unsigned int x = 0; x < internalMap.size(); x++){
-			internalMap[x].push_front( new Node(2) );
-		}
-	}
-
-	//Add to internal map, for move to the Right
-	if(posY + internOffsetY >= internalMap[0].size() ){
-		for(unsigned int x = 0; x < internalMap.size(); x++){
-			internalMap[x].push_back( new Node(2) );
-		}
-	}
-
-	//add to internal map, for move up;
-	if(posX + internOffsetX < 0 ){
-		internOffsetX++;
-		std::deque<Node*> temp;			
-		for (int y = 0; y < internalMap[0].size(); y++){
-			temp.push_back( new Node(2) );
-		}
-		internalMap.push_front( temp );
-	}
-
-	//add to internal map, for move down
-	if(posX + internOffsetX >= internalMap.size() ){
-		std::deque<Node*> temp;
-		for (int y = 0; y < internalMap[0].size(); y++){
-			temp.push_back( new Node(2) );
-		}
-		internalMap.push_back( temp );
-	}
+	//Check the suroundings after move
+	Recon();
 
 	positionNode = world->isMoveAble(posX, posY);
 
 	positionNode->visit();
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
 	//Sleep(sleep);
+
+}
+
+
+void Agent::Recon(){
+	
+	//Add to left of internal map.
+	if(posY + internOffsetY-1 < 0){
+		internOffsetY++;
+		for(unsigned int x = 0; x < internalMap.size(); x++){
+			internalMap[x].push_front( new Node(3) );
+		}
+	}
+
+	//Add to right of internal map.
+	if(posY + internOffsetY+1 >= internalMap[0].size() ){
+		for(unsigned int x = 0; x < internalMap.size(); x++){
+			internalMap[x].push_back( new Node(3) );
+		}
+	}
+
+	//add to top of internal map.
+	if(posX + internOffsetX-1 < 0 ){
+		internOffsetX++;
+		std::deque<Node*> temp;			
+		for (int y = 0; y < internalMap[0].size(); y++){
+			temp.push_back( new Node(3) );
+		}
+		internalMap.push_front( temp );
+	}
+
+	//add to bottom of internal map.
+	if(posX + internOffsetX+1 >= internalMap.size() ){
+		std::deque<Node*> temp;
+		for (int y = 0; y < internalMap[0].size(); y++){
+			temp.push_back( new Node(3) );
+		}
+		internalMap.push_back( temp );
+	}
+
+	internalMap[posX + internOffsetX-1][posY + internOffsetY] = world->isMoveAble(posX-1, posY); //up
+	internalMap[posX + internOffsetX+1][posY + internOffsetY] = world->isMoveAble(posX+1, posY); //down
+	internalMap[posX + internOffsetX][posY + internOffsetY-1] = world->isMoveAble(posX, posY-1); //left
+	internalMap[posX + internOffsetX][posY + internOffsetY+1] = world->isMoveAble(posX, posY+1); //right
 
 }

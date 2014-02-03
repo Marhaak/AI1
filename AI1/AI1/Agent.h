@@ -27,6 +27,7 @@ private:
 	void Vacuum();	// This function will vacuum if there is dirty
 	void Move();	// This function will move the agent to a new place
 	void Draw(int x, int y);
+	void Recon();
 	
 
 public:
