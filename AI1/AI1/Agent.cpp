@@ -16,11 +16,44 @@ Agent::Agent(Environment* _world){
 	
 	world = _world;
 	positionNode = _world->SetStartNode();
+
+	//Setting up internal map.
+	std::deque<Node*> temp;
+	for (int x = 0; x < 3; x++){
+		temp.push_back( new Node(1) );
+	}
+	for (int x = 0; x < 3; x++){
+		internalMap.push_back(temp);
+	}
+	internalMap[1][1] = positionNode;
+	
+	internOffsetX = 1;
+	internOffsetY = 1;
+
 }
 
 Agent::~Agent(void){
 
 	delete positionNode;
+}
+
+void Agent::Draw(int x, int y){
+
+	std::cout << "\nInternal Map:\n";
+	for(unsigned int i = 0; i < internalMap.size(); i++){
+		for (unsigned int j = 0; j < internalMap[i].size(); j++){
+
+			if (i == x && j == y){
+				std::cout << "0";
+			} else {
+				if (internalMap[i][j]->getValue() == 0){std::cout << "x";}
+				if (internalMap[i][j]->getValue() == 1){std::cout << " ";}
+				if (internalMap[i][j]->getValue() == 2){std::cout << "#";}
+			}
+		}
+		std::cout << std::endl;
+	}
+	std::cout << "End of internal Map\n";
 }
 
 int Agent::Run(){
@@ -31,6 +64,7 @@ int Agent::Run(){
 	while (running) {
 		system("CLS");
 		world->draw(posX, posY);
+		Draw(posX, posY);
 		Vacuum();
 		Move();
 		
@@ -71,8 +105,11 @@ void Agent::Move() {
 	
 	std::cout<< "Moving to next - ";
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> de762a6a4fe07584d1abf49a985236409cb4e0ac
 	bool moveAble = true;
 	int randomz;
 	while( moveAble ) {
@@ -125,7 +162,10 @@ void Agent::Move() {
 
 	positionNode->visit();
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
-
 	Sleep(sleep);
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> de762a6a4fe07584d1abf49a985236409cb4e0ac
 }

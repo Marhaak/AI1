@@ -6,7 +6,6 @@ using namespace std;
 
 Environment::Environment(int _x, int _y){
 
-	dummy = new Node(2);
 	xSize = _x;
 	ySize = _y;
 	numOfDirts = 0;
@@ -72,16 +71,19 @@ void Environment::draw(int _x, int _y){
 	if( dirtCounter!= 0 && dirtCounter % 5 == 0) {
 		int xPosHolder = botX;
 		int yPosHolder = botY;
-		cout<< "New dirt!!!\n";
-		dummy = SetStartNode();
-		dummy->setValue(1);
+		
+		SetStartNode()->setValue(1);
+		
 		botX = xPosHolder;
 		botY = yPosHolder;
 		numOfDirts++;
 	}
+<<<<<<< HEAD
 	
 	
 
+=======
+>>>>>>> de762a6a4fe07584d1abf49a985236409cb4e0ac
 }
 
 Node* Environment::SetStartNode() {

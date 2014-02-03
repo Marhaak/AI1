@@ -13,15 +13,20 @@ private:
 	int steps;
 	int posX;
 	int posY;
+	int internOffsetX;
+	int internOffsetY;
 	int posXBeenHere;
 	int posYBeenHere;
 	bool moveToWhere[3];
 	Node* positionNode;
 	Environment* world;
+	
+	std::deque< std::deque< Node* > > internalMap;
 
 	// Functions
 	void Vacuum();	// This function will vacuum if there is dirty
 	void Move();	// This function will move the agent to a new place
+	void Draw(int x, int y);
 	
 
 public:
