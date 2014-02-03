@@ -6,7 +6,6 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
+#include <deque>
 
 extern int sleep;
-extern int xCordEnvironment;
-extern int yCordEnvironment;

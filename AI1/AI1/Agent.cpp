@@ -16,11 +16,38 @@ Agent::Agent(Environment* _world){
 	
 	world = _world;
 	positionNode = _world->SetStartNode();
+
+	//Setting up internal map.
+	std::deque<Node*> temp;
+	temp.push_back(positionNode);
+	internalMap.push_back(temp);
+	internOffsetX = 0;
+	internOffsetY = 0;
+
 }
 
 Agent::~Agent(void){
 
 	delete positionNode;
+}
+
+void Agent::Draw(int x, int y){
+
+	std::cout << "\nInternal Map:\n";
+	for(unsigned int i = 0; i < internalMap.size(); i++){
+		for (unsigned int j = 0; j < internalMap[i].size(); j++){
+
+			if (i == x && j == y){
+				std::cout << "0";
+			} else {
+				if (internalMap[i][j]->getValue() == 0){std::cout << "x";}
+				if (internalMap[i][j]->getValue() == 1){std::cout << " ";}
+				if (internalMap[i][j]->getValue() == 2){std::cout << "#";}
+			}
+		}
+		std::cout << std::endl;
+	}
+	std::cout << "End of internal Map\n";
 }
 
 int Agent::Run(){
@@ -31,6 +58,7 @@ int Agent::Run(){
 	while (running) {
 		system("CLS");
 		world->draw(posX, posY);
+		Draw(posX, posY);
 		Vacuum();
 		Move();
 		
