@@ -78,12 +78,7 @@ void Environment::draw(int _x, int _y){
 		botY = yPosHolder;
 		numOfDirts++;
 	}
-<<<<<<< HEAD
-	
-	
 
-=======
->>>>>>> de762a6a4fe07584d1abf49a985236409cb4e0ac
 }
 
 Node* Environment::SetStartNode() {

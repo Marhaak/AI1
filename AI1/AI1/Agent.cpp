@@ -105,11 +105,7 @@ void Agent::Move() {
 	
 	std::cout<< "Moving to next - ";
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> de762a6a4fe07584d1abf49a985236409cb4e0ac
 	bool moveAble = true;
 	int randomz;
 	while( moveAble ) {
@@ -163,9 +159,5 @@ void Agent::Move() {
 	positionNode->visit();
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
 	Sleep(sleep);
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> de762a6a4fe07584d1abf49a985236409cb4e0ac
 }
