@@ -70,12 +70,12 @@ int Agent::Run(){
 		
 		//will end if taking more than 1k steps.
 		steps++;
-		if(steps > 1000) {
+		if(steps > 100) {
 			running = false;
-			return 0;
+			return 1;
 		}
 	}
-	return 1;
+	return 0;
 };
 
 void Agent::Vacuum() {
@@ -92,11 +92,7 @@ void Agent::Vacuum() {
 		std::cout<< " Clean!"<< std::endl;
 
 		positionNode->setValue(0);
-		if(world->AddCleanedNode()) {
-
-			world->SetNumSteps(steps);
-			running = false;
-		}
+		world->AddCleanedNode();
 	}
 }
 
@@ -158,6 +154,6 @@ void Agent::Move() {
 
 	positionNode->visit();
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
-	Sleep(sleep);
+	//Sleep(sleep);
 
 }
