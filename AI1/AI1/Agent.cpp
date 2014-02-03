@@ -94,6 +94,11 @@ void Agent::Vacuum() {
 		std::cout<< " Clean!"<< std::endl;
 
 		positionNode->setValue(0);
+		if(world->AddCleanedNode()) {
+
+			world->SetNumSteps(steps);
+			running = false;
+		}
 	}
 }
 
@@ -101,6 +106,7 @@ void Agent::Move() {
 
 	Sleep(sleep);
 	std::cout<< "Moving to next - ";
+
 
 	bool moveAble = true;
 	int randomz;

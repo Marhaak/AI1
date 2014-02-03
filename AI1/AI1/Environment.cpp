@@ -8,6 +8,7 @@ Environment::Environment(int _x, int _y){
 
 	xSize = _x;
 	ySize = _y;
+	numOfDirts = 0;
 	srand( time(NULL) );
 	
 	for (int i = 0; i < _x; i++){
@@ -19,6 +20,10 @@ Environment::Environment(int _x, int _y){
 
 			Node* node = new Node( rand() % 3 );
 			map[i].push_back( node );
+			if (node->getValue() == 1) {
+
+				numOfDirts++;
+			}
 		}
 	}
 }
@@ -71,7 +76,9 @@ void Environment::draw(int _x, int _y){
 		
 		botX = xPosHolder;
 		botY = yPosHolder;
+		numOfDirts++;
 	}
+
 }
 
 Node* Environment::SetStartNode() {
@@ -85,4 +92,17 @@ Node* Environment::SetStartNode() {
 		startNode = map[botX][botY];
 	}
 	return startNode;
+}
+
+bool Environment::AddCleanedNode() {
+	NumOfDirtsCleaned++;
+	if(numOfDirts == NumOfDirtsCleaned) {
+
+		return true;
+	}
+	return false;
+}
+
+void Environment::SetNumSteps(int _i) {
+	numOfStepsUsed = _i;
 }
