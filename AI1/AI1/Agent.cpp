@@ -19,10 +19,16 @@ Agent::Agent(Environment* _world){
 
 	//Setting up internal map.
 	std::deque<Node*> temp;
-	temp.push_back(positionNode);
-	internalMap.push_back(temp);
-	internOffsetX = 0;
-	internOffsetY = 0;
+	for (int x = 0; x < 3; x++){
+		temp.push_back( new Node(1) );
+	}
+	for (int x = 0; x < 3; x++){
+		internalMap.push_back(temp);
+	}
+	internalMap[1][1] = positionNode;
+	
+	internOffsetX = 1;
+	internOffsetY = 1;
 
 }
 
