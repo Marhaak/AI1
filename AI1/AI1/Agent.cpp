@@ -160,20 +160,14 @@ void Agent::Move() {
 			internalMap[x].push_front( new Node(2) );
 		}
 	}
+
 	//Add to internal map, for move to the Right
 	if(posY + internOffsetY >= internalMap[0].size() ){
 		for(unsigned int x = 0; x < internalMap.size(); x++){
 			internalMap[x].push_back( new Node(2) );
 		}
 	}
-	//add to internal map, for move Up
-	if(posX + internOffsetX >= internalMap.size() ){
-		std::deque<Node*> temp;			
-		for (int y = 0; y < internalMap[0].size(); y++){
-			temp.push_back( new Node(2) );
-		}
-		internalMap.push_back( temp );
-	}
+
 	//add to internal map, for move up;
 	if(posX + internOffsetX < 0 ){
 		internOffsetX++;
@@ -184,6 +178,14 @@ void Agent::Move() {
 		internalMap.push_front( temp );
 	}
 
+	//add to internal map, for move down
+	if(posX + internOffsetX >= internalMap.size() ){
+		std::deque<Node*> temp;
+		for (int y = 0; y < internalMap[0].size(); y++){
+			temp.push_back( new Node(2) );
+		}
+		internalMap.push_back( temp );
+	}
 
 	positionNode = world->isMoveAble(posX, posY);
 
