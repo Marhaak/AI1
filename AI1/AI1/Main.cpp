@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int sleep = 0;
+int sleep = 300;
 int xCordForEnvironment = 10;
 int yCordForEnvironment = 10;
 int numOfDirt = 20;	
@@ -19,12 +19,14 @@ int main(int argc, char* argv[]){
 	Agent* agent = nullptr;
 	Node* startNode = nullptr;
 
-	//taking commandline parameter to set up size of environment
+	// Taking commandline parameter to set up size of environment
 	if (argc == 3){
 		environment = new Environment( atoi(argv[1]), atoi(argv[2]) );
 	} else if (argc == 5){
 		environment = new Environment( atoi(argv[1]), atoi(argv[2]), atoi(argv[3]), atoi(argv[4]) );
-	} else { environment = new Environment(xCordForEnvironment, yCordForEnvironment, numOfDirt, numOfObstacles); }
+	} else { 
+		environment = new Environment(xCordForEnvironment, yCordForEnvironment, numOfDirt, numOfObstacles); 
+	}
 
 	agent = new Agent(environment);
 	
@@ -40,6 +42,9 @@ int main(int argc, char* argv[]){
 	//Cleaning up
 	delete environment;
 	delete agent;
-
+	delete startNode;
+	environment = nullptr;
+	agent = nullptr;
+	startNode = nullptr;
 	return 0;
 }

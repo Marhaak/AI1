@@ -24,10 +24,14 @@ int Node::setValue(int _new){
 }
 
 void Node::visit(bool set){
-	if(set){visited = true;}
-	else{ visited = false; }
+
+	if(set){
+		visited = true;
+	} else { 
+		visited = false; 
+	}
 }
 
-bool Node::getVisit(){
+bool Node::getVisit() {
 	return visited;
 }
