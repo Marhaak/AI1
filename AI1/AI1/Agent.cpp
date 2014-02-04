@@ -101,12 +101,8 @@ void Agent::Move() {
 		else if(internalMap[posX+internOffsetX-1][posY+internOffsetY]->getValue() == 1){ posX--; }
 		else if(internalMap[posX+internOffsetX][posY+internOffsetY+1]->getValue() == 1){ posY++; }
 		else if(internalMap[posX+internOffsetX][posY+internOffsetY-1]->getValue() == 1){ posY--; }
-<<<<<<< HEAD
 
 		//else if ( AStar() ){}
-		
-=======
->>>>>>> b9546785f6b76e7c0f80f7daf827d56a38947e25
 		else{
 			//Find shortest distance to unvisted node.
 			float dist = 10000;
@@ -131,11 +127,18 @@ void Agent::Move() {
 				std::cout << "pos: " << posX+internOffsetX << " " << posY+internOffsetY << std::endl;
 				std::cout << "Target: " << tempX << " " << tempY << std::endl;
 
-				//Need to set up A* to target
 				if (posX+internOffsetX-tempX > 0 && world->isMoveAble(posX-1, posY)->getValue() != 2){ posX--; }
 				else if(posX+internOffsetX-tempX < 0 && world->isMoveAble(posX+1, posY)->getValue() != 2){ posX++; }
 				else if (posY+internOffsetY-tempY > 0 && world->isMoveAble(posX, posY-1)->getValue() != 2){ posY--; }
 				else if(posY+internOffsetY-tempY < 0 && world->isMoveAble(posX, posY+1)->getValue() != 2){ posY++; }
+				
+				//force move
+				else{
+					if(world->isMoveAble(posX, posY-1)->getValue() != 2){ posY--; }		
+					else if (world->isMoveAble(posX-1, posY)->getValue() != 2){ posX--; }
+					else if(world->isMoveAble(posX+1, posY)->getValue() != 2){ posX++; }
+					else if(world->isMoveAble(posX, posY+1)->getValue() != 2){ posY++; }
+				}
 				
 			}
 			//no possible targets, unvisit all.
@@ -153,6 +156,8 @@ void Agent::Move() {
 				else if (world->isMoveAble(posX-1, posY)->getValue() != 2){ posX--; }
 			}
 		}
+
+
 	}
 	positionNode = world->isMoveAble(posX, posY);
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
@@ -205,131 +210,6 @@ void Agent::Recon(){
 	if (internalMap[posX + internOffsetX+1][posY + internOffsetY]->getValue() == 2){ internalMap[posX + internOffsetX+1][posY + internOffsetY]->visit(); }
 	if (internalMap[posX + internOffsetX][posY + internOffsetY+1]->getValue() == 2){ internalMap[posX + internOffsetX][posY + internOffsetY-1]->visit(); }
 	if (internalMap[posX + internOffsetX][posY + internOffsetY-1]->getValue() == 2){ internalMap[posX + internOffsetX][posY + internOffsetY+1]->visit(); }
-<<<<<<< HEAD
 
 }
 
-
-
-bool Agent::AStar(){
-	
-	//finding the target
-	int dist = 10000;
-	int targetX;
-	int targetY;
-	for (unsigned int x = 0; x < internalMap.size(); x++){
-		for (unsigned int y = 0; y < internalMap[0].size(); y++){
-			if((internalMap[x][y]->getValue() == 0 || internalMap[x][y]->getValue() == 1) && !internalMap[x][y]->getVisit()){
-				
-				int temp = std::abs( int(posX+internOffsetX-x) ) + std::abs( int(posY+internOffsetY-y) );
-				if (temp <= dist){
-					dist = temp;
-					targetX = x; targetY = y;
-				}
-			}
-		}
-	}
-
-
-	//pathfinding
-	std::vector<Node*> Open;
-	std::vector<Node*> Closed;
-
-	Node* tempNode = positionNode;
-
-	tempNode->ManhattanValue = dist*10;
-	tempNode->thisX = posX+internOffsetX;
-	tempNode->thisY = posY+internOffsetY;
-	
-	Open.push_back(tempNode);
-
-	while(Open.size() > 0){
-		
-		//Search for lowest score
-		int tempI = 0;
-		std::cout << "target " << targetX << " " << targetY << endl;
-		std::cout << "Position " << posX+internOffsetX << " " << posY+internOffsetY << endl;
-		for(int i = 0; i < Open.size(); i++){
-
-			std::cout << i << " " << Open[i]->ManhattanValue << endl;
-			
-			if(Open[i]->ManhattanValue <= tempNode->ManhattanValue){
-				tempNode = Open[i];
-				tempI = i;
-			}
-		}
-
-		cin.get();
-		//target found?
-		if (tempNode->thisX == targetX && tempNode->thisY == targetY){
-			std::cout << "yay" << endl;
-			cin.get();
-			
-			return false;
-		}
-
-		//move from open to closed list
-		Closed.push_back(tempNode);
-		Open.erase(Open.begin() + tempI);
-		
-
-		//add 4 surounding nodes to open
-		// x+1
-		if(internalMap[tempNode->thisX+1][tempNode->thisY]->getValue() != 2 && NotIn(Closed, internalMap[tempNode->thisX+1][tempNode->thisY] ) ){
-			Node* temp = internalMap[tempNode->thisX+1][tempNode->thisY];
-			temp->thisX = tempNode->thisX+1; temp->thisY = tempNode->thisY;
-
-			//adding manhattanvalue
-			temp->ManhattanValue = (std::abs( int(temp->thisX-targetX) ) + std::abs( int(temp->thisY-targetY) ) ) * 10;
-			temp->Parent = tempNode;
-			Open.push_back( temp );
-		}
-
-		// x-1
-		if(internalMap[tempNode->thisX-1][tempNode->thisY]->getValue() != 2 && NotIn(Closed, internalMap[tempNode->thisX-1][tempNode->thisY] ) ){
-			Node* temp = internalMap[tempNode->thisX-1][tempNode->thisY];
-			temp->thisX = tempNode->thisX-1; temp->thisY = tempNode->thisY;
-
-			//adding manhattanvalue
-			temp->ManhattanValue = (std::abs( int(temp->thisX-targetX) ) + std::abs( int(temp->thisY-targetY) ) ) * 10;
-			temp->Parent = tempNode;
-			Open.push_back( temp ); 
-		}
-
-		// y+1
-		if(internalMap[tempNode->thisX][tempNode->thisY+1]->getValue() != 2 && NotIn(Closed, internalMap[tempNode->thisX][tempNode->thisY+1] ) ){
-			Node* temp = internalMap[tempNode->thisX][tempNode->thisY+1];
-			temp->thisX = tempNode->thisX; temp->thisY = tempNode->thisY+1;
-
-			//adding manhattanvalue
-			temp->ManhattanValue = (std::abs( int(temp->thisX-targetX) ) + std::abs( int(temp->thisY-targetY) ) ) * 10;
-			temp->Parent = tempNode;
-			Open.push_back( temp );
-		}
-
-		// y-1
-		if(internalMap[tempNode->thisX][tempNode->thisY-1]->getValue() != 2 && NotIn(Closed, internalMap[tempNode->thisX][tempNode->thisY-1] ) ){
-			Node* temp = internalMap[tempNode->thisX][tempNode->thisY-1];
-			temp->thisX = tempNode->thisX; temp->thisY = tempNode->thisY-1;
-
-			//adding manhattanvalue
-			temp->ManhattanValue = (std::abs( int(temp->thisX-targetX) ) + std::abs( int(temp->thisY-targetY) ) ) * 10;
-			temp->Parent = tempNode;
-			Open.push_back( temp );
-		}
-
-
-
-
-	}
-	return false;
-}
-
-bool Agent::NotIn(vector<Node*> vec, Node* node){
-	for(int i = 0; i < vec.size(); i++){
-		if(vec[i]->thisX == node->thisX && vec[i]->thisY == node->thisY){ return false; }
-	}
-	return true;
-=======
->>>>>>> b9546785f6b76e7c0f80f7daf827d56a38947e25
-}

@@ -15,10 +15,6 @@ private:
 public:
 
 	// Variables
-	int ManhattanValue;
-	Node* Parent;
-	int thisX;
-	int thisY;
 
 	// Functions
 	Node(int init);

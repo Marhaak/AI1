@@ -58,19 +58,13 @@ void Environment::draw(int _x, int _y){
 	// Clear the screen
 	SDL_RenderClear(renderer);
 	for (int i = 0; i < xSize; i++){
-
 		for (int j = 0; j < ySize; j++){
 			
 			if(i == _x+botX && j == _y+botY){ graphix->Draw(i * 32, j * 32,3);}
-
 			else{
 				graphix->Draw(i * 32, j * 32, map[i][j]->getValue());
-				/*if (map[i][j]->getValue() == 0){std::cout << " ";}
-				if (map[i][j]->getValue() == 1){std::cout << "~";}
-				if (map[i][j]->getValue() == 2){std::cout << "#";}*/
 			}
 		}
-		std::cout << std::endl;
 	}
 	// Swap buffers
 	SDL_RenderPresent(renderer);

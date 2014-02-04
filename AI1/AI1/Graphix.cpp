@@ -72,7 +72,7 @@ SDL_Renderer* Graphix::Renderer() {
 	return renderer;
 }
 
-bool Graphix::Event(_event) {
-
-
-}
+//bool Graphix::Event(_event) {
+//
+//
+//}

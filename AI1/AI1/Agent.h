@@ -11,13 +11,12 @@ private:
 	bool running;
 	bool beenHere; // false if not been there, true if it has
 	int steps;
+
 	int posX;
 	int posY;
 	int internOffsetX;
 	int internOffsetY;
-	int posXBeenHere;
-	int posYBeenHere;
-	bool moveToWhere[3];
+
 	Node* positionNode;
 	Environment* world;
 	
@@ -28,8 +27,7 @@ private:
 	void Move();	// This function will move the agent to a new place
 	void Draw(int x, int y);
 	void Recon();
-	bool AStar();
-	bool NotIn(std::vector<Node*> vec, Node* node);
+
 
 public:
 	// Variables
