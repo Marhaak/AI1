@@ -12,3 +12,5 @@
 
 
 extern int sleep;
+extern bool reinsertDirt;
+extern int numOfStepsBeforeNewDirt;

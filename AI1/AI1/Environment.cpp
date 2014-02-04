@@ -75,7 +75,7 @@ void Environment::draw(int _x, int _y){
 
 
 	dirtCounter++;
-	if( dirtCounter!= 0 && dirtCounter % 5 == 0) {
+	if( dirtCounter!= 0 && dirtCounter % numOfStepsBeforeNewDirt == 0 && reinsertDirt) {
 		int xPosHolder = botX;
 		int yPosHolder = botY;
 		
