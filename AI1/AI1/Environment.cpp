@@ -42,6 +42,14 @@ Environment::~Environment(){
 			map[x][y] = nullptr;
 		}
 	}
+
+	SDL_DestroyTexture(textureSheet[0]);
+	SDL_DestroyTexture(textureSheet[1]);
+	SDL_DestroyTexture(textureSheet[2]);
+	SDL_DestroyTexture(textureSheet[3]);
+	SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
 }
 
 //returns the node the bot is trying to move into
@@ -149,6 +157,7 @@ bool Environment::SetUpSDL() {
         std::cout << SDL_GetError() << std::endl;
 		return false;
     }
+
 
 	// Everything went ok
 	return true;
