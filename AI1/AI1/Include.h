@@ -13,3 +13,5 @@
 #include "SDL_image.h"
 
 extern int sleep;
+extern bool reinsertDirt;
+extern int numOfStepsBeforeNewDirt;
