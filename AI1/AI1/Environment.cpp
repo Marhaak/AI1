@@ -6,6 +6,7 @@ using namespace std;
 
 Environment::Environment(int _x, int _y, int _dirt, int _obj){
 
+	graphix = new Graphix;
 	xSize = _x;
 	ySize = _y;
 	numOfDirts = _dirt;
@@ -30,10 +31,6 @@ Environment::Environment(int _x, int _y, int _dirt, int _obj){
 		SetStartNode()->setValue(2);
 	}
 
-	if(!SetUpSDL()) {
-
-		return;
-	}
 }
 
 Environment::~Environment(){
@@ -45,13 +42,7 @@ Environment::~Environment(){
 		}
 	}
 
-	SDL_DestroyTexture(textureSheet[0]);
-	SDL_DestroyTexture(textureSheet[1]);
-	SDL_DestroyTexture(textureSheet[2]);
-	SDL_DestroyTexture(textureSheet[3]);
-	SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
+
 }
 
 //returns the node the bot is trying to move into
@@ -136,31 +127,4 @@ void Environment::GetScore() {
 	}
 
 	cout<< numOfDirtsLeft<< " dirts left\nOn a "<< xSize<< " x "<< ySize<< "map\n";
-}
-
-bool Environment::SetUpSDL() {
-
-
-	if (SDL_Init(SDL_INIT_EVERYTHING) == -1){
-		cout << SDL_GetError() << endl;
-		return false;
-	}
-
-	// Creating the window
-	window = SDL_CreateWindow("Vacuum", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 500, 500, NULL);
-    if (window == nullptr){
-        cout << SDL_GetError() << "\n";
-		return false;
-    }
-
-	// Creating the renderer
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    if (renderer == nullptr){
-        std::cout << SDL_GetError() << std::endl;
-		return false;
-    }
-
-
-	// Everything went ok
-	return true;
 }
