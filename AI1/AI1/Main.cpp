@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int sleep = 300;
+int sleep = 0;
 int xCordForEnvironment = 10;
 int yCordForEnvironment = 10;
 int numOfDirt = 20;	
