@@ -31,24 +31,19 @@ Environment::Environment(int _x, int _y, int _dirt, int _obj){
 	for (int j = 0; j < _obj; j++){
 		SetStartNode()->setValue(2);
 	}
-
 }
 
-Environment::~Environment(){
-	
+Environment::~Environment(){	
 	//map = nullptr
 	for (int x = 0; x < xSize; x++){
 		for (int y = 0; y < ySize; y++){
 			map[x][y] = nullptr;
 		}
 	}
-
-
 }
 
 //returns the node the bot is trying to move into
 Node* Environment::isMoveAble(int _x, int _y) {
-
 	//if outside the map, return a node that is a wall.
 	if(_x+botX > xSize-1 || _x+botX < 0 || _y+botY > ySize-1 || _y+botY < 0) {
 		return new Node(2);
@@ -57,16 +52,17 @@ Node* Environment::isMoveAble(int _x, int _y) {
 	else return map[_x+botX][_y+botY];
 }
 
-
 //draws the environment
 void Environment::draw(int _x, int _y){
 
 	// Clear the screen
 	SDL_RenderClear(renderer);
 	for (int i = 0; i < xSize; i++){
+
 		for (int j = 0; j < ySize; j++){
 			
 			if(i == _x+botX && j == _y+botY){ graphix->Draw(i * 32, j * 32,3);}
+
 			else{
 				graphix->Draw(i * 32, j * 32, map[i][j]->getValue());
 				/*if (map[i][j]->getValue() == 0){std::cout << " ";}
@@ -80,23 +76,18 @@ void Environment::draw(int _x, int _y){
 
 	}
 
-
 	dirtCounter++;
 	if( dirtCounter!= 0 && dirtCounter % numOfStepsBeforeNewDirt == 0 && reinsertDirt) {
 		int xPosHolder = botX;
-		int yPosHolder = botY;
-		
-		SetStartNode()->setValue(1);
-		
+		int yPosHolder = botY;		
+		SetStartNode()->setValue(1);		
 		botX = xPosHolder;
 		botY = yPosHolder;
 		numOfDirts++;
 	}
-
 }
 
 Node* Environment::SetStartNode() {
-
 	Node* startNode = new Node(2);
 	
 	//set random start node that is not a wall.
@@ -109,7 +100,6 @@ Node* Environment::SetStartNode() {
 }
 
 void Environment::AddCleanedNode() {
-	
 	numOfDirts--;
 	cout<< "Num dirt: "<<numOfDirts<< " Num dirt C: "<< NumOfDirtsCleaned<< "\n";
 }
@@ -119,19 +109,14 @@ void Environment::SetNumSteps(int _i) {
 }
 
 void Environment::GetScore() {
-
 	int numOfDirtsLeft = 0;
-
 	for (int i = 0; i < xSize; i++){
-		for (int j = 0; j < ySize; j++){
-			
+		for (int j = 0; j < ySize; j++){			
 			if(map[i][j]->getValue() == 1) {
-
 				numOfDirtsLeft++;
 			}
 		}
 		std::cout << std::endl;
 	}
-
 	cout<< numOfDirtsLeft<< " dirts left\nOn a "<< xSize<< " x "<< ySize<< "map\n";
 }
