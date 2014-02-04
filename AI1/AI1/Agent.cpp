@@ -120,7 +120,7 @@ void Agent::Move() {
 		else{
 
 			//Find shortest distance to unvisted node.
-			int dist = 10000;
+			float dist = 10000;
 			int tempX;
 			int tempY;
 			for (unsigned int x = 0; x < internalMap.size(); x++){
@@ -128,7 +128,7 @@ void Agent::Move() {
 
 					if((internalMap[x][y]->getValue() == 0 || internalMap[x][y]->getValue() == 1) && !internalMap[x][y]->getVisit()){
 						
-						int temp = std::abs( int(posX+internOffsetX-x) ) + std::abs( int(posY+internOffsetY-y) );
+						float temp = std::abs( std::sqrt( std::abs( int(posX+internOffsetX-x) ) * std::abs( int(posY+internOffsetY-y) ) ) );
 						if (temp <= dist){
 							dist = temp;
 							tempX = x; tempY = y;
