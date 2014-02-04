@@ -21,11 +21,18 @@ Environment::Environment(int _x, int _y, int _dirt, int _obj){
 		}
 	}
 
+	//Setting dirt
 	for (int i = 0; i < _dirt; i++){
 		SetStartNode()->setValue(1);
 	}
+	//Setting obj
 	for (int j = 0; j < _obj; j++){
 		SetStartNode()->setValue(2);
+	}
+
+	if(!SetUpSDL()) {
+
+		return;
 	}
 }
 
@@ -121,4 +128,30 @@ void Environment::GetScore() {
 	}
 
 	cout<< numOfDirtsLeft<< " dirts left\nOn a "<< xSize<< " x "<< ySize<< "map\n";
+}
+
+bool Environment::SetUpSDL() {
+
+
+	if (SDL_Init(SDL_INIT_EVERYTHING) == -1){
+		cout << SDL_GetError() << endl;
+		return false;
+	}
+
+	// Creating the window
+	window = SDL_CreateWindow("Vacuum", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 500, 500, NULL);
+    if (window == nullptr){
+        cout << SDL_GetError() << "\n";
+		return false;
+    }
+
+	// Creating the renderer
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    if (renderer == nullptr){
+        std::cout << SDL_GetError() << std::endl;
+		return false;
+    }
+
+	// Everything went ok
+	return true;
 }
