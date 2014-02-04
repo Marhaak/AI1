@@ -12,6 +12,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
 
+// Global variables
 extern int sleep;
 extern bool reinsertDirt;
 extern int numOfStepsBeforeNewDirt;

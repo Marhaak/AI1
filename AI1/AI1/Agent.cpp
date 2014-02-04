@@ -33,8 +33,16 @@ Agent::Agent(Environment* _world){
 	internOffsetY = 1;
 }
 
-Agent::~Agent(void){
+Agent::~Agent(){
+
+	for (int x = 0; x < internalMap.size(); x++) {
+		for (int y = 0; y < internalMap[0].size(); y++) {
+			delete internalMap[x][y];
+			internalMap[x][y] = nullptr;
+		}
+	}
 	delete positionNode;
+	positionNode = nullptr;
 }
 
 void Agent::Draw(int x, int y){
@@ -45,13 +53,13 @@ void Agent::Draw(int x, int y){
 			if (i == x+internOffsetX && j == y+internOffsetY){
 				std::cout << "A";
 			} else {
-				if (internalMap[i][j]->getValue() == 0){std::cout << " ";}
-				if (internalMap[i][j]->getValue() == 1){std::cout << "~";}
-				if (internalMap[i][j]->getValue() == 2){std::cout << "#";}
-				if (internalMap[i][j]->getValue() == 3){std::cout << "x";}
+				if (internalMap[i][j]->getValue() == 0){cout << " ";}
+				if (internalMap[i][j]->getValue() == 1){cout << "~";}
+				if (internalMap[i][j]->getValue() == 2){cout << "#";}
+				if (internalMap[i][j]->getValue() == 3){cout << "x";}
 			}
 		}
-		std::cout << std::endl;
+		cout << endl;
 	}
 }
 
@@ -78,13 +86,13 @@ int Agent::Run(){
 };
 
 void Agent::Vacuum() {
+
 	if ( positionNode->getValue() == 0 ) {
-		cout << "Node is clean" << std::endl;
-	}
-	else {
+		cout << "Node is clean" << endl;
+	} else {
 		std::cout<< "I am vacuuming here now, soon clean...";
-		Sleep(300);
-		std::cout<< " Clean!"<< std::endl;
+		Sleep(sleep);
+		std::cout<< " Clean!"<< endl;
 		positionNode->setValue(0);
 		world->AddCleanedNode();
 	}
@@ -94,7 +102,7 @@ void Agent::Move() {
 	if( world->isMoveAble(posX+1, posY)->getValue() == 2 && world->isMoveAble(posX-1, posY)->getValue() == 2 &&
 		world->isMoveAble(posX, posY+1)->getValue() == 2 && world->isMoveAble(posX, posY-1)->getValue() == 2 ){
 			running = false;
-			std::cout << "Trapped bot is sad bot" << std::endl;
+			cout << "Trapped bot is sad bot" << endl;
 			cin.get();
 	} else {
 		if(internalMap[posX+internOffsetX+1][posY+internOffsetY]->getValue() == 1){ posX++; }
@@ -124,8 +132,8 @@ void Agent::Move() {
 			}
 			//Found a target
 			if(dist != 10000){				
-				std::cout << "pos: " << posX+internOffsetX << " " << posY+internOffsetY << std::endl;
-				std::cout << "Target: " << tempX << " " << tempY << std::endl;
+				cout << "pos: " << posX+internOffsetX << " " << posY+internOffsetY << endl;
+				cout << "Target: " << tempX << " " << tempY << endl;
 
 				if (posX+internOffsetX-tempX > 0 && world->isMoveAble(posX-1, posY)->getValue() != 2){ posX--; }
 				else if(posX+internOffsetX-tempX < 0 && world->isMoveAble(posX+1, posY)->getValue() != 2){ posX++; }
@@ -134,6 +142,10 @@ void Agent::Move() {
 				
 				//force move
 				else{
+<<<<<<< HEAD
+=======
+					
+>>>>>>> 4bc7f3bda708b5a79b6988a02c306d43548f6799
 					if(world->isMoveAble(posX, posY-1)->getValue() != 2){ posY--; }		
 					else if (world->isMoveAble(posX-1, posY)->getValue() != 2){ posX--; }
 					else if(world->isMoveAble(posX+1, posY)->getValue() != 2){ posX++; }
@@ -160,7 +172,7 @@ void Agent::Move() {
 
 	}
 	positionNode = world->isMoveAble(posX, posY);
-	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
+	cout<< "Moved to x: "<<posX<< " y: "<< posY<<endl;
 	Sleep(sleep);
 }
 

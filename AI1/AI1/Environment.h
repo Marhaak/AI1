@@ -18,6 +18,7 @@ private:
 	std::vector< std::vector<Node*> > map; // The map that the agents lives in
 	Graphix* graphix;
 	SDL_Renderer* renderer;
+	SDL_Event eventHander;
 	
 	// Functions
 
@@ -32,6 +33,5 @@ public:
 	void draw(int _x, int _y);		// Draws the map
 	Node* SetStartNode();			// Returns a startnode that the agent will start on
 	void AddCleanedNode();
-	void SetNumSteps(int _i);
 	void GetScore();
 };

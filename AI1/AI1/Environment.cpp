@@ -6,7 +6,7 @@ using namespace std;
 
 Environment::Environment(int _x, int _y, int _dirt, int _obj){
 
-	graphix = new Graphix;
+	graphix = new Graphix(_x*32, _y*32);
 	renderer = graphix->Renderer();
 	xSize = _x;
 	ySize = _y;
@@ -37,6 +37,7 @@ Environment::~Environment(){
 	//map = nullptr
 	for (int x = 0; x < xSize; x++){
 		for (int y = 0; y < ySize; y++){
+			delete map[x][y];
 			map[x][y] = nullptr;
 		}
 	}
@@ -55,6 +56,19 @@ Node* Environment::isMoveAble(int _x, int _y) {
 //draws the environment
 void Environment::draw(int _x, int _y){
 
+	// Check for events
+	graphix->Event(eventHander);
+	
+	// Setting new dirt if right conditions
+	dirtCounter++;
+	if( dirtCounter!= 0 && dirtCounter % numOfStepsBeforeNewDirt == 0 && reinsertDirt) {
+		int xPosHolder = botX;
+		int yPosHolder = botY;		
+		SetStartNode()->setValue(1);		
+		botX = xPosHolder;
+		botY = yPosHolder;
+		numOfDirts++;
+	}
 	// Clear the screen
 	SDL_RenderClear(renderer);
 	for (int i = 0; i < xSize; i++){
@@ -68,16 +82,6 @@ void Environment::draw(int _x, int _y){
 	}
 	// Swap buffers
 	SDL_RenderPresent(renderer);
-
-	dirtCounter++;
-	if( dirtCounter!= 0 && dirtCounter % numOfStepsBeforeNewDirt == 0 && reinsertDirt) {
-		int xPosHolder = botX;
-		int yPosHolder = botY;		
-		SetStartNode()->setValue(1);		
-		botX = xPosHolder;
-		botY = yPosHolder;
-		numOfDirts++;
-	}
 }
 
 Node* Environment::SetStartNode() {
@@ -94,22 +98,19 @@ Node* Environment::SetStartNode() {
 
 void Environment::AddCleanedNode() {
 	numOfDirts--;
-	cout<< "Num dirt: "<<numOfDirts<< " Num dirt C: "<< NumOfDirtsCleaned<< "\n";
-}
-
-void Environment::SetNumSteps(int _i) {
-	numOfStepsUsed = _i;
 }
 
 void Environment::GetScore() {
 	int numOfDirtsLeft = 0;
+
+	// Going thru and finding all the dirts that are left
 	for (int i = 0; i < xSize; i++){
 		for (int j = 0; j < ySize; j++){			
 			if(map[i][j]->getValue() == 1) {
 				numOfDirtsLeft++;
 			}
 		}
-		std::cout << std::endl;
+		cout << endl;
 	}
-	cout<< numOfDirtsLeft<< " dirts left\nOn a "<< xSize<< " x "<< ySize<< "map\n";
+	cout<< numOfDirtsLeft<< " dirts left\nOn a "<< xSize * ySize<< " map\n";
 }

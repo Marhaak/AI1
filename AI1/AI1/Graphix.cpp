@@ -1,24 +1,27 @@
 #include "Graphix.h"
 using namespace std;
 
-Graphix::Graphix() {
+Graphix::Graphix(int _x, int _y) {
+	winXSize = _x;
+	winYSize = _y;
 	InitSDL();
 }
 
 void Graphix::Draw(int _x, int _y, int _i) {
 
-	//Put things on buffer
+	// Draws to back buffer
 	ApplySurface(_x, _y, textureSheet[_i], renderer);
 }
 	
 bool Graphix::InitSDL() {
+
 	if (SDL_Init(SDL_INIT_EVERYTHING) == -1){
 		cout << SDL_GetError() << endl;
 		return false;
 	}
 
 	// Creating the window
-	window = SDL_CreateWindow("Vacuum", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 500, 500, NULL);
+	window = SDL_CreateWindow("Vacuum", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, winXSize, winYSize, NULL);
     if (window == nullptr){
         cout << SDL_GetError() << "\n";
 		return false;
@@ -27,7 +30,7 @@ bool Graphix::InitSDL() {
 	// Creating the renderer
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (renderer == nullptr){
-        std::cout << SDL_GetError() << std::endl;
+        cout << SDL_GetError() << endl;
 		return false;
     }
 
@@ -40,15 +43,19 @@ bool Graphix::InitSDL() {
 }
 
 Graphix::~Graphix() {
-	SDL_DestroyTexture(textureSheet[0]);
-	SDL_DestroyTexture(textureSheet[1]);
-	SDL_DestroyTexture(textureSheet[2]);
-	SDL_DestroyTexture(textureSheet[3]);
+
+	// "Turn off" SDL
+	for(int i = 0; i < 4; i++) {
+
+		SDL_DestroyTexture(textureSheet[i]);
+	}
+	
 	SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
 
+// Setting the textue on the screen
 void Graphix::ApplySurface(int x, int y, SDL_Texture *tex, SDL_Renderer *rend) {
 	SDL_Rect pos;
     pos.x = x;
@@ -57,6 +64,7 @@ void Graphix::ApplySurface(int x, int y, SDL_Texture *tex, SDL_Renderer *rend) {
     SDL_RenderCopy(rend, tex, NULL, &pos);
 }
 
+// Loading a image to a texture
 SDL_Texture* Graphix::loadImage(string _file) {
 	SDL_Texture* tex = nullptr;
 	tex = IMG_LoadTexture(renderer, _file.c_str());
@@ -72,7 +80,21 @@ SDL_Renderer* Graphix::Renderer() {
 	return renderer;
 }
 
+<<<<<<< HEAD
 //bool Graphix::Event(_event) {
 //
 //
 //}
+=======
+// Checking for an quit event
+void Graphix::Event(SDL_Event _event) {
+
+	while (SDL_PollEvent(&_event)) {
+			
+		if (_event.type == SDL_QUIT){
+
+			exit(0);
+		}
+	}
+}
+>>>>>>> 4bc7f3bda708b5a79b6988a02c306d43548f6799
