@@ -37,8 +37,5 @@ public:
 	// Functions
 	Agent(Environment* _world);
 	~Agent();
-
 	int Run();	// The main loop of the agent
-
 };
-

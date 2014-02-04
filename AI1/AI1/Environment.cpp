@@ -6,6 +6,8 @@ using namespace std;
 
 Environment::Environment(int _x, int _y, int _dirt, int _obj){
 
+	graphix = new Graphix;
+	renderer = graphix->Renderer();
 	xSize = _x;
 	ySize = _y;
 	numOfDirts = _dirt;
@@ -29,34 +31,19 @@ Environment::Environment(int _x, int _y, int _dirt, int _obj){
 	for (int j = 0; j < _obj; j++){
 		SetStartNode()->setValue(2);
 	}
-
-	if(!SetUpSDL()) {
-
-		return;
-	}
 }
 
-Environment::~Environment(){
-	
+Environment::~Environment(){	
 	//map = nullptr
 	for (int x = 0; x < xSize; x++){
 		for (int y = 0; y < ySize; y++){
 			map[x][y] = nullptr;
 		}
 	}
-
-	SDL_DestroyTexture(textureSheet[0]);
-	SDL_DestroyTexture(textureSheet[1]);
-	SDL_DestroyTexture(textureSheet[2]);
-	SDL_DestroyTexture(textureSheet[3]);
-	SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
 }
 
 //returns the node the bot is trying to move into
 Node* Environment::isMoveAble(int _x, int _y) {
-
 	//if outside the map, return a node that is a wall.
 	if(_x+botX > xSize-1 || _x+botX < 0 || _y+botY > ySize-1 || _y+botY < 0) {
 		return new Node(2);
@@ -65,40 +52,41 @@ Node* Environment::isMoveAble(int _x, int _y) {
 	else return map[_x+botX][_y+botY];
 }
 
-
 //draws the environment
 void Environment::draw(int _x, int _y){
 
+	// Clear the screen
+	SDL_RenderClear(renderer);
 	for (int i = 0; i < xSize; i++){
+
 		for (int j = 0; j < ySize; j++){
 			
-			if(i == _x+botX && j == _y+botY){ std::cout<< "O";}
+			if(i == _x+botX && j == _y+botY){ graphix->Draw(i * 32, j * 32,3);}
+
 			else{
-				if (map[i][j]->getValue() == 0){std::cout << " ";}
+				graphix->Draw(i * 32, j * 32, map[i][j]->getValue());
+				/*if (map[i][j]->getValue() == 0){std::cout << " ";}
 				if (map[i][j]->getValue() == 1){std::cout << "~";}
-				if (map[i][j]->getValue() == 2){std::cout << "#";}
+				if (map[i][j]->getValue() == 2){std::cout << "#";}*/
 			}
 		}
 		std::cout << std::endl;
 	}
-
+	// Swap buffers
+	SDL_RenderPresent(renderer);
 
 	dirtCounter++;
-	if( dirtCounter!= 0 && dirtCounter % 5 == 0) {
+	if( dirtCounter!= 0 && dirtCounter % numOfStepsBeforeNewDirt == 0 && reinsertDirt) {
 		int xPosHolder = botX;
-		int yPosHolder = botY;
-		
-		SetStartNode()->setValue(1);
-		
+		int yPosHolder = botY;		
+		SetStartNode()->setValue(1);		
 		botX = xPosHolder;
 		botY = yPosHolder;
 		numOfDirts++;
 	}
-
 }
 
 Node* Environment::SetStartNode() {
-
 	Node* startNode = new Node(2);
 	
 	//set random start node that is not a wall.
@@ -111,7 +99,6 @@ Node* Environment::SetStartNode() {
 }
 
 void Environment::AddCleanedNode() {
-	
 	numOfDirts--;
 	cout<< "Num dirt: "<<numOfDirts<< " Num dirt C: "<< NumOfDirtsCleaned<< "\n";
 }
@@ -121,46 +108,14 @@ void Environment::SetNumSteps(int _i) {
 }
 
 void Environment::GetScore() {
-
 	int numOfDirtsLeft = 0;
-
 	for (int i = 0; i < xSize; i++){
-		for (int j = 0; j < ySize; j++){
-			
+		for (int j = 0; j < ySize; j++){			
 			if(map[i][j]->getValue() == 1) {
-
 				numOfDirtsLeft++;
 			}
 		}
 		std::cout << std::endl;
 	}
-
 	cout<< numOfDirtsLeft<< " dirts left\nOn a "<< xSize<< " x "<< ySize<< "map\n";
-}
-
-bool Environment::SetUpSDL() {
-
-
-	if (SDL_Init(SDL_INIT_EVERYTHING) == -1){
-		cout << SDL_GetError() << endl;
-		return false;
-	}
-
-	// Creating the window
-	window = SDL_CreateWindow("Vacuum", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 500, 500, NULL);
-    if (window == nullptr){
-        cout << SDL_GetError() << "\n";
-		return false;
-    }
-
-	// Creating the renderer
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    if (renderer == nullptr){
-        std::cout << SDL_GetError() << std::endl;
-		return false;
-    }
-
-
-	// Everything went ok
-	return true;
 }

@@ -4,16 +4,12 @@
 
 using namespace std;
 
-Agent::Agent(Environment* _world){
-	
+Agent::Agent(Environment* _world){	
 	srand( time(NULL) );
 	running = false;
-	
 	steps = 0;
-	
 	posX = 0;
 	posY = 0;
-	
 	world = _world;
 	positionNode = _world->SetStartNode();
 
@@ -29,24 +25,19 @@ Agent::Agent(Environment* _world){
 	}
 	internalMap[1][1] = positionNode;
 	internalMap[1][1]->visit();
-	
 	internalMap[0][1] = world->isMoveAble(posX-1, posY); //up
 	internalMap[2][1] = world->isMoveAble(posX+1, posY); //down
 	internalMap[1][0] = world->isMoveAble(posX, posY-1); //left
 	internalMap[1][2] = world->isMoveAble(posX, posY+1); //right
-	
 	internOffsetX = 1;
 	internOffsetY = 1;
-
 }
 
 Agent::~Agent(void){
-
 	delete positionNode;
 }
 
 void Agent::Draw(int x, int y){
-
 	std::cout << "\nInternal Map:\n";
 	for(unsigned int i = 0; i < internalMap.size(); i++){
 		for (unsigned int j = 0; j < internalMap[i].size(); j++){
@@ -65,7 +56,6 @@ void Agent::Draw(int x, int y){
 }
 
 int Agent::Run(){
-
 	running = true;
 	
 	//running until environment is clean
@@ -79,7 +69,7 @@ int Agent::Run(){
 		
 		//will end if taking more than 1k steps.
 		steps++;
-		if(steps > 100) {
+		if(steps > runtime) {
 			running = false;
 			return 1;
 		}
@@ -88,39 +78,36 @@ int Agent::Run(){
 };
 
 void Agent::Vacuum() {
-
 	if ( positionNode->getValue() == 0 ) {
 		cout << "Node is clean" << std::endl;
 	}
 	else {
-
 		std::cout<< "I am vacuuming here now, soon clean...";
 		Sleep(300);
 		std::cout<< " Clean!"<< std::endl;
-
 		positionNode->setValue(0);
 		world->AddCleanedNode();
 	}
 }
 
 void Agent::Move() {
-
 	if( world->isMoveAble(posX+1, posY)->getValue() == 2 && world->isMoveAble(posX-1, posY)->getValue() == 2 &&
 		world->isMoveAble(posX, posY+1)->getValue() == 2 && world->isMoveAble(posX, posY-1)->getValue() == 2 ){
 			running = false;
 			std::cout << "Trapped bot is sad bot" << std::endl;
 			cin.get();
 	} else {
-
 		if(internalMap[posX+internOffsetX+1][posY+internOffsetY]->getValue() == 1){ posX++; }
 		else if(internalMap[posX+internOffsetX-1][posY+internOffsetY]->getValue() == 1){ posX--; }
 		else if(internalMap[posX+internOffsetX][posY+internOffsetY+1]->getValue() == 1){ posY++; }
 		else if(internalMap[posX+internOffsetX][posY+internOffsetY-1]->getValue() == 1){ posY--; }
+<<<<<<< HEAD
 
 		//else if ( AStar() ){}
 		
+=======
+>>>>>>> b9546785f6b76e7c0f80f7daf827d56a38947e25
 		else{
-
 			//Find shortest distance to unvisted node.
 			float dist = 10000;
 			int tempX;
@@ -140,8 +127,7 @@ void Agent::Move() {
 				}
 			}
 			//Found a target
-			if(dist != 10000){
-				
+			if(dist != 10000){				
 				std::cout << "pos: " << posX+internOffsetX << " " << posY+internOffsetY << std::endl;
 				std::cout << "Target: " << tempX << " " << tempY << std::endl;
 
@@ -168,16 +154,12 @@ void Agent::Move() {
 			}
 		}
 	}
-
 	positionNode = world->isMoveAble(posX, posY);
 	std::cout<< "Moved to x: "<<posX<< " y: "<< posY<<std::endl;
 	Sleep(sleep);
-
 }
 
-
-void Agent::Recon(){
-	
+void Agent::Recon(){	
 	//Add to left of internal map.
 	if(posY + internOffsetY-1 < 0){
 		internOffsetY++;
@@ -223,6 +205,7 @@ void Agent::Recon(){
 	if (internalMap[posX + internOffsetX+1][posY + internOffsetY]->getValue() == 2){ internalMap[posX + internOffsetX+1][posY + internOffsetY]->visit(); }
 	if (internalMap[posX + internOffsetX][posY + internOffsetY+1]->getValue() == 2){ internalMap[posX + internOffsetX][posY + internOffsetY-1]->visit(); }
 	if (internalMap[posX + internOffsetX][posY + internOffsetY-1]->getValue() == 2){ internalMap[posX + internOffsetX][posY + internOffsetY+1]->visit(); }
+<<<<<<< HEAD
 
 }
 
@@ -347,4 +330,6 @@ bool Agent::NotIn(vector<Node*> vec, Node* node){
 		if(vec[i]->thisX == node->thisX && vec[i]->thisY == node->thisY){ return false; }
 	}
 	return true;
+=======
+>>>>>>> b9546785f6b76e7c0f80f7daf827d56a38947e25
 }

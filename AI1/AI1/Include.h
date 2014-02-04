@@ -8,8 +8,11 @@
 #include <windows.h>
 #include <deque>
 #include <math.h>
-
+#include <string.h>
 #include "SDL.h"
 #include "SDL_image.h"
 
 extern int sleep;
+extern bool reinsertDirt;
+extern int numOfStepsBeforeNewDirt;
+extern int runtime;

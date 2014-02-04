@@ -13,7 +13,7 @@
     <ClCompile Include="Node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SDL.cpp">
+    <ClCompile Include="Graphix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30,7 +30,7 @@
     <ClInclude Include="Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SDL.h">
+    <ClInclude Include="Graphix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
