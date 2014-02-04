@@ -7,5 +7,7 @@
 #include <vector>
 #include <windows.h>
 #include <deque>
+#include "SDL.h"
+#include "SDL_image.h"
 
 extern int sleep;

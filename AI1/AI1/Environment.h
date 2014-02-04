@@ -15,7 +15,9 @@ private:
 	int NumOfDirtsCleaned;	// Hold the number of cleaned dirts
 	int numOfStepsUsed;		// Will hold the number of steps the agent used to clean the area
 	std::vector< std::vector<Node*> > map; // The map that the agents lives in
-	Node* dummy;
+	SDL_Texture*  charSheet[2];						// Array of the textures
+	SDL_Window*   window;					// The window
+	SDL_Renderer* renderer;				// The renderer
 	
 	// Functions
 	
@@ -33,4 +35,5 @@ public:
 	void AddCleanedNode();
 	void SetNumSteps(int _i);
 	void GetScore();
+	bool SetUpSDL();
 };
