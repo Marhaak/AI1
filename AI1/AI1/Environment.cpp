@@ -7,6 +7,7 @@ using namespace std;
 Environment::Environment(int _x, int _y, int _dirt, int _obj){
 
 	graphix = new Graphix;
+	renderer = graphix->Renderer();
 	xSize = _x;
 	ySize = _y;
 	numOfDirts = _dirt;
@@ -60,17 +61,23 @@ Node* Environment::isMoveAble(int _x, int _y) {
 //draws the environment
 void Environment::draw(int _x, int _y){
 
+	// Clear the screen
+	SDL_RenderClear(renderer);
 	for (int i = 0; i < xSize; i++){
 		for (int j = 0; j < ySize; j++){
 			
-			if(i == _x+botX && j == _y+botY){ std::cout<< "O";}
+			if(i == _x+botX && j == _y+botY){ graphix->Draw(i * 32, j * 32,3);}
 			else{
-				if (map[i][j]->getValue() == 0){std::cout << " ";}
+				graphix->Draw(i * 32, j * 32, map[i][j]->getValue());
+				/*if (map[i][j]->getValue() == 0){std::cout << " ";}
 				if (map[i][j]->getValue() == 1){std::cout << "~";}
-				if (map[i][j]->getValue() == 2){std::cout << "#";}
+				if (map[i][j]->getValue() == 2){std::cout << "#";}*/
 			}
 		}
 		std::cout << std::endl;
+		// Swap buffers
+		SDL_RenderPresent(renderer);
+
 	}
 
 

@@ -1,7 +1,6 @@
 #pragma once
 #include "Include.h"
-#include "SDL.h"
-#include "SDL_image.h"
+
 
 class Graphix {
 
@@ -16,5 +15,6 @@ public:
 	SDL_Texture* loadImage(std::string _file);
 	void ApplySurface(int _x, int _y, SDL_Texture* _tex, SDL_Renderer* _rend);
 	~Graphix();
+	SDL_Renderer* Renderer();
 };
 

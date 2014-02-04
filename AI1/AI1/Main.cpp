@@ -8,7 +8,7 @@ int sleep = 300;
 int xCordForEnvironment = 10;
 int yCordForEnvironment = 10;
 int numOfDirt = 20;
-int numOfObstacles = 0;
+int numOfObstacles = 1;
 bool reinsertDirt = true;
 int numOfStepsBeforeNewDirt = 10;
 
