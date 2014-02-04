@@ -4,14 +4,14 @@
 
 using namespace std;
 
-int sleep = 300;
+int sleep = 0;
 int xCordForEnvironment = 10;
 int yCordForEnvironment = 10;
 int numOfDirt = 20;	
 int numOfObstacles = 10;
 bool reinsertDirt = true;
 int numOfStepsBeforeNewDirt = 15;
-int runtime = 1000;
+int runtime = 100;
 
 
 int main(int argc, char* argv[]){

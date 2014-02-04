@@ -142,10 +142,7 @@ void Agent::Move() {
 				
 				//force move
 				else{
-<<<<<<< HEAD
-=======
-					
->>>>>>> 4bc7f3bda708b5a79b6988a02c306d43548f6799
+
 					if(world->isMoveAble(posX, posY-1)->getValue() != 2){ posY--; }		
 					else if (world->isMoveAble(posX-1, posY)->getValue() != 2){ posX--; }
 					else if(world->isMoveAble(posX+1, posY)->getValue() != 2){ posX++; }

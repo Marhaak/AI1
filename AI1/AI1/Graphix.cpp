@@ -80,12 +80,6 @@ SDL_Renderer* Graphix::Renderer() {
 	return renderer;
 }
 
-<<<<<<< HEAD
-//bool Graphix::Event(_event) {
-//
-//
-//}
-=======
 // Checking for an quit event
 void Graphix::Event(SDL_Event _event) {
 
@@ -97,4 +91,3 @@ void Graphix::Event(SDL_Event _event) {
 		}
 	}
 }
->>>>>>> 4bc7f3bda708b5a79b6988a02c306d43548f6799
