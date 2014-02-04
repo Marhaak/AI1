@@ -19,7 +19,6 @@ private:
 	Graphix* graphix;
 	
 	// Functions
-	
 
 public:
 

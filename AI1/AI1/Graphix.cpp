@@ -6,7 +6,6 @@ Graphix::Graphix() {
 }
 
 void Graphix::Draw(int _x, int _y, int _i) {
-
 	// Clear the screen
 	SDL_RenderClear(renderer);
 
@@ -15,11 +14,9 @@ void Graphix::Draw(int _x, int _y, int _i) {
 	
 	// Swap buffers
 	SDL_RenderPresent(renderer);
-
 }
 	
 bool Graphix::InitSDL() {
-
 	if (SDL_Init(SDL_INIT_EVERYTHING) == -1){
 		cout << SDL_GetError() << endl;
 		return false;
@@ -48,7 +45,6 @@ bool Graphix::InitSDL() {
 }
 
 Graphix::~Graphix() {
-
 	SDL_DestroyTexture(textureSheet[0]);
 	SDL_DestroyTexture(textureSheet[1]);
 	SDL_DestroyTexture(textureSheet[2]);
@@ -59,17 +55,14 @@ Graphix::~Graphix() {
 }
 
 void Graphix::ApplySurface(int x, int y, SDL_Texture *tex, SDL_Renderer *rend) {
-
 	SDL_Rect pos;
     pos.x = x;
     pos.y = y;
-  
 	SDL_QueryTexture(tex, NULL, NULL, &pos.w, &pos.h); 
     SDL_RenderCopy(rend, tex, NULL, &pos);
 }
 
 SDL_Texture* Graphix::loadImage(string _file) {
-
 	SDL_Texture* tex = nullptr;
 	tex = IMG_LoadTexture(renderer, _file.c_str());
     if (tex == nullptr)

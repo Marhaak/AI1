@@ -4,7 +4,6 @@
 using namespace std;
 
 Node::Node(int init){
-
 	//Creation
 	value = init;
 	visited = false;
