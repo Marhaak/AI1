@@ -71,10 +71,9 @@ void Environment::draw(int _x, int _y){
 			}
 		}
 		std::cout << std::endl;
-		// Swap buffers
-		SDL_RenderPresent(renderer);
-
 	}
+	// Swap buffers
+	SDL_RenderPresent(renderer);
 
 	dirtCounter++;
 	if( dirtCounter!= 0 && dirtCounter % numOfStepsBeforeNewDirt == 0 && reinsertDirt) {
