@@ -4,11 +4,11 @@
 
 using namespace std;
 
-Environment::Environment(int _x, int _y){
+Environment::Environment(int _x, int _y, int _dirt, int _obj){
 
 	xSize = _x;
 	ySize = _y;
-	numOfDirts = 0;
+	numOfDirts = _dirt;
 	NumOfDirtsCleaned = 0;
 	srand( time(NULL) );
 	
@@ -16,16 +16,18 @@ Environment::Environment(int _x, int _y){
 
 		std::vector<Node*> temp;
 		map.push_back( temp );
-
 		for (int j = 0; j < _y; j++){
-
-			Node* node = new Node( rand() % 3 );
-			map[i].push_back( node );
-			if (node->getValue() == 1) {
-
-				numOfDirts++;
-			}
+			map[i].push_back( new Node(0) );
 		}
+	}
+
+	//Setting dirt
+	for (int i = 0; i < _dirt; i++){
+		SetStartNode()->setValue(1);
+	}
+	//Setting obj
+	for (int j = 0; j < _obj; j++){
+		SetStartNode()->setValue(2);
 	}
 
 	if(!SetUpSDL()) {
@@ -100,7 +102,7 @@ Node* Environment::SetStartNode() {
 	Node* startNode = new Node(2);
 	
 	//set random start node that is not a wall.
-	while(startNode->getValue() == 2) {
+	while(startNode->getValue() == 2 || startNode->getValue() == 1 ) {
 		botX= rand() % xSize;
 		botY = rand() % ySize;
 		startNode = map[botX][botY];

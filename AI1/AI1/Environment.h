@@ -27,7 +27,7 @@ public:
 	// Variables
 	
 	// Functions
-	Environment(int _x = 10, int _y = 20);
+	Environment(int _x = 10, int _y = 20, int _dirt = 20, int _obj = 10);
 	~Environment();
 	Node* isMoveAble(int x, int y); // Return the node that the agent can move to, or a dummy node
 	void draw(int _x, int _y);		// Draws the map
