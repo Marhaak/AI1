@@ -6,14 +6,9 @@ Graphix::Graphix() {
 }
 
 void Graphix::Draw(int _x, int _y, int _i) {
-	// Clear the screen
-	SDL_RenderClear(renderer);
 
 	//Put things on buffer
 	ApplySurface(_x, _y, textureSheet[_i], renderer);
-	
-	// Swap buffers
-	SDL_RenderPresent(renderer);
 }
 	
 bool Graphix::InitSDL() {
@@ -65,8 +60,14 @@ void Graphix::ApplySurface(int x, int y, SDL_Texture *tex, SDL_Renderer *rend) {
 SDL_Texture* Graphix::loadImage(string _file) {
 	SDL_Texture* tex = nullptr;
 	tex = IMG_LoadTexture(renderer, _file.c_str());
-    if (tex == nullptr)
+    if (tex == nullptr) {
 		cout<<"Failed to load image: "<< _file.c_str()<<" "<<  IMG_GetError();
-	cin.get();
+		cin.get();
+	}
+	
     return tex;
+}
+
+SDL_Renderer* Graphix::Renderer() {
+	return renderer;
 }
