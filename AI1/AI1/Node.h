@@ -6,6 +6,7 @@ class Node {
 
 private:
 	// Variables
+	// 0 clean, 1 dirty, 2 blocked, 3 unknown/yet to visit
 	int value;
 	bool visited;
 
@@ -20,6 +21,6 @@ public:
 	~Node();
 	int getValue();			// Returns the valus of the node
 	int setValue(int _new);	// Sets a new value
-	void visit();			// Sets the node til visited
+	void visit(bool set = true);			// Sets the node til visited
 	bool getVisit();		// Returns the visit status
 };
