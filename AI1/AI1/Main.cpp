@@ -11,6 +11,7 @@ int numOfDirt = 20;
 int numOfObstacles = 2;
 bool reinsertDirt = true;
 int numOfStepsBeforeNewDirt = 10;
+int runtime = 1000;
 
 
 int main(int argc, char* argv[]){

@@ -16,5 +16,6 @@ public:
 	void ApplySurface(int _x, int _y, SDL_Texture* _tex, SDL_Renderer* _rend);
 	~Graphix();
 	SDL_Renderer* Renderer();
+	bool Event(SDL_Event* _event);
 };
 

@@ -69,7 +69,7 @@ int Agent::Run(){
 		
 		//will end if taking more than 1k steps.
 		steps++;
-		if(steps > 100) {
+		if(steps > runtime) {
 			running = false;
 			return 1;
 		}

@@ -71,3 +71,8 @@ SDL_Texture* Graphix::loadImage(string _file) {
 SDL_Renderer* Graphix::Renderer() {
 	return renderer;
 }
+
+bool Graphix::Event(_event) {
+
+
+}
