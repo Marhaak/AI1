@@ -21,7 +21,7 @@ int main(int argc, char* argv[]){
 		environment = new Environment( atoi(argv[1]), atoi(argv[2]) );
 	} else if (argc == 5){
 		environment = new Environment( atoi(argv[1]), atoi(argv[2]), atoi(argv[3]), atoi(argv[4]) );
-	} else { environment = new Environment(xCordForEnvironment, yCordForEnvironment, 20, 0); }
+	} else { environment = new Environment(xCordForEnvironment, yCordForEnvironment, 20, 20); }
 
 	agent = new Agent(environment);
 	

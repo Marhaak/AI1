@@ -143,30 +143,32 @@ void Agent::Move() {
 				std::cout << "pos: " << posX+internOffsetX << " " << posY+internOffsetY << std::endl;
 				std::cout << "Target: " << tempX << " " << tempY << std::endl;
 
+				//Need to set up A* to target
 				if (posX+internOffsetX-tempX > 0 && world->isMoveAble(posX-1, posY)->getValue() != 2){ posX--; }
 				else if(posX+internOffsetX-tempX < 0 && world->isMoveAble(posX+1, posY)->getValue() != 2){ posX++; }
 				else if (posY+internOffsetY-tempY > 0 && world->isMoveAble(posX, posY-1)->getValue() != 2){ posY--; }
 				else if(posY+internOffsetY-tempY < 0 && world->isMoveAble(posX, posY+1)->getValue() != 2){ posY++; }
 				else{
 					//cin.get();
-					if (world->isMoveAble(posX-1, posY)->getValue() != 2){ posX--; }
+					if(world->isMoveAble(posX, posY-1)->getValue() != 2){ posY--; }		
 					else if(world->isMoveAble(posX+1, posY)->getValue() != 2){ posX++; }
-					else if(world->isMoveAble(posX, posY-1)->getValue() != 2){ posY--; }
 					else if(world->isMoveAble(posX, posY+1)->getValue() != 2){ posY++; }
+					else if (world->isMoveAble(posX-1, posY)->getValue() != 2){ posX--; }
 				}
-
-				
-
 			}
 			//no possible targets, unvisit all.
 			else {
-				std::cout << "No valid targets";
-				cin.get();
+				
 				for (unsigned int x = 0; x < internalMap.size(); x++){
 					for (unsigned int y = 0; y < internalMap[0].size(); y++){
 						internalMap[x][y]->visit(false);
 					}
 				}
+				
+				if(world->isMoveAble(posX, posY-1)->getValue() != 2){ posY--; }		
+				else if(world->isMoveAble(posX+1, posY)->getValue() != 2){ posX++; }
+				else if(world->isMoveAble(posX, posY+1)->getValue() != 2){ posY++; }
+				else if (world->isMoveAble(posX-1, posY)->getValue() != 2){ posX--; }
 			}
 
 		}
