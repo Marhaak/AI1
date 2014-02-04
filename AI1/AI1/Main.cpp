@@ -14,7 +14,6 @@ int numOfStepsBeforeNewDirt = 10;
 
 
 int main(int argc, char* argv[]){
-	
 	Environment* environment = nullptr;
 	Agent* agent = nullptr;
 	Node* startNode = nullptr;
