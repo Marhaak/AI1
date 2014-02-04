@@ -9,12 +9,16 @@ private:
 	// 0 clean, 1 dirty, 2 blocked, 3 unknown/yet to visit
 	int value;
 	bool visited;
-
+	
 	// Functions
 
 public:
 
 	// Variables
+	int ManhattanValue;
+	Node* Parent;
+	int thisX;
+	int thisY;
 
 	// Functions
 	Node(int init);

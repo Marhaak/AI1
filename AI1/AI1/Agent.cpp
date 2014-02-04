@@ -117,6 +117,8 @@ void Agent::Move() {
 		else if(internalMap[posX+internOffsetX][posY+internOffsetY+1]->getValue() == 1){ posY++; }
 		else if(internalMap[posX+internOffsetX][posY+internOffsetY-1]->getValue() == 1){ posY--; }
 
+		//else if ( AStar() ){}
+		
 		else{
 
 			//Find shortest distance to unvisted node.
@@ -148,17 +150,11 @@ void Agent::Move() {
 				else if(posX+internOffsetX-tempX < 0 && world->isMoveAble(posX+1, posY)->getValue() != 2){ posX++; }
 				else if (posY+internOffsetY-tempY > 0 && world->isMoveAble(posX, posY-1)->getValue() != 2){ posY--; }
 				else if(posY+internOffsetY-tempY < 0 && world->isMoveAble(posX, posY+1)->getValue() != 2){ posY++; }
-				else{
-					//cin.get();
-					if(world->isMoveAble(posX, posY-1)->getValue() != 2){ posY--; }		
-					else if(world->isMoveAble(posX+1, posY)->getValue() != 2){ posX++; }
-					else if(world->isMoveAble(posX, posY+1)->getValue() != 2){ posY++; }
-					else if (world->isMoveAble(posX-1, posY)->getValue() != 2){ posX--; }
-				}
+				
 			}
 			//no possible targets, unvisit all.
 			else {
-				
+			
 				for (unsigned int x = 0; x < internalMap.size(); x++){
 					for (unsigned int y = 0; y < internalMap[0].size(); y++){
 						internalMap[x][y]->visit(false);
@@ -170,7 +166,6 @@ void Agent::Move() {
 				else if(world->isMoveAble(posX, posY+1)->getValue() != 2){ posY++; }
 				else if (world->isMoveAble(posX-1, posY)->getValue() != 2){ posX--; }
 			}
-
 		}
 	}
 
@@ -217,10 +212,10 @@ void Agent::Recon(){
 		internalMap.push_back( temp );
 	}
 
-	internalMap[posX + internOffsetX-1][posY + internOffsetY] = world->isMoveAble(posX-1, posY); //up
-	internalMap[posX + internOffsetX+1][posY + internOffsetY] = world->isMoveAble(posX+1, posY); //down
-	internalMap[posX + internOffsetX][posY + internOffsetY-1] = world->isMoveAble(posX, posY-1); //left
-	internalMap[posX + internOffsetX][posY + internOffsetY+1] = world->isMoveAble(posX, posY+1); //right
+	internalMap[posX + internOffsetX-1][posY + internOffsetY]->setValue(world->isMoveAble(posX-1, posY)->getValue()); //up
+	internalMap[posX + internOffsetX+1][posY + internOffsetY]->setValue(world->isMoveAble(posX+1, posY)->getValue()); //down
+	internalMap[posX + internOffsetX][posY + internOffsetY-1]->setValue(world->isMoveAble(posX, posY-1)->getValue()); //left
+	internalMap[posX + internOffsetX][posY + internOffsetY+1]->setValue(world->isMoveAble(posX, posY+1)->getValue()); //right
 
 	//visit nodes.
 	internalMap[posX+internOffsetX][posY+internOffsetY]->visit();
@@ -229,4 +224,127 @@ void Agent::Recon(){
 	if (internalMap[posX + internOffsetX][posY + internOffsetY+1]->getValue() == 2){ internalMap[posX + internOffsetX][posY + internOffsetY-1]->visit(); }
 	if (internalMap[posX + internOffsetX][posY + internOffsetY-1]->getValue() == 2){ internalMap[posX + internOffsetX][posY + internOffsetY+1]->visit(); }
 
+}
+
+
+
+bool Agent::AStar(){
+	
+	//finding the target
+	int dist = 10000;
+	int targetX;
+	int targetY;
+	for (unsigned int x = 0; x < internalMap.size(); x++){
+		for (unsigned int y = 0; y < internalMap[0].size(); y++){
+			if((internalMap[x][y]->getValue() == 0 || internalMap[x][y]->getValue() == 1) && !internalMap[x][y]->getVisit()){
+				
+				int temp = std::abs( int(posX+internOffsetX-x) ) + std::abs( int(posY+internOffsetY-y) );
+				if (temp <= dist){
+					dist = temp;
+					targetX = x; targetY = y;
+				}
+			}
+		}
+	}
+
+
+	//pathfinding
+	std::vector<Node*> Open;
+	std::vector<Node*> Closed;
+
+	Node* tempNode = positionNode;
+
+	tempNode->ManhattanValue = dist*10;
+	tempNode->thisX = posX+internOffsetX;
+	tempNode->thisY = posY+internOffsetY;
+	
+	Open.push_back(tempNode);
+
+	while(Open.size() > 0){
+		
+		//Search for lowest score
+		int tempI = 0;
+		std::cout << "target " << targetX << " " << targetY << endl;
+		std::cout << "Position " << posX+internOffsetX << " " << posY+internOffsetY << endl;
+		for(int i = 0; i < Open.size(); i++){
+
+			std::cout << i << " " << Open[i]->ManhattanValue << endl;
+			
+			if(Open[i]->ManhattanValue <= tempNode->ManhattanValue){
+				tempNode = Open[i];
+				tempI = i;
+			}
+		}
+
+		cin.get();
+		//target found?
+		if (tempNode->thisX == targetX && tempNode->thisY == targetY){
+			std::cout << "yay" << endl;
+			cin.get();
+			
+			return false;
+		}
+
+		//move from open to closed list
+		Closed.push_back(tempNode);
+		Open.erase(Open.begin() + tempI);
+		
+
+		//add 4 surounding nodes to open
+		// x+1
+		if(internalMap[tempNode->thisX+1][tempNode->thisY]->getValue() != 2 && NotIn(Closed, internalMap[tempNode->thisX+1][tempNode->thisY] ) ){
+			Node* temp = internalMap[tempNode->thisX+1][tempNode->thisY];
+			temp->thisX = tempNode->thisX+1; temp->thisY = tempNode->thisY;
+
+			//adding manhattanvalue
+			temp->ManhattanValue = (std::abs( int(temp->thisX-targetX) ) + std::abs( int(temp->thisY-targetY) ) ) * 10;
+			temp->Parent = tempNode;
+			Open.push_back( temp );
+		}
+
+		// x-1
+		if(internalMap[tempNode->thisX-1][tempNode->thisY]->getValue() != 2 && NotIn(Closed, internalMap[tempNode->thisX-1][tempNode->thisY] ) ){
+			Node* temp = internalMap[tempNode->thisX-1][tempNode->thisY];
+			temp->thisX = tempNode->thisX-1; temp->thisY = tempNode->thisY;
+
+			//adding manhattanvalue
+			temp->ManhattanValue = (std::abs( int(temp->thisX-targetX) ) + std::abs( int(temp->thisY-targetY) ) ) * 10;
+			temp->Parent = tempNode;
+			Open.push_back( temp ); 
+		}
+
+		// y+1
+		if(internalMap[tempNode->thisX][tempNode->thisY+1]->getValue() != 2 && NotIn(Closed, internalMap[tempNode->thisX][tempNode->thisY+1] ) ){
+			Node* temp = internalMap[tempNode->thisX][tempNode->thisY+1];
+			temp->thisX = tempNode->thisX; temp->thisY = tempNode->thisY+1;
+
+			//adding manhattanvalue
+			temp->ManhattanValue = (std::abs( int(temp->thisX-targetX) ) + std::abs( int(temp->thisY-targetY) ) ) * 10;
+			temp->Parent = tempNode;
+			Open.push_back( temp );
+		}
+
+		// y-1
+		if(internalMap[tempNode->thisX][tempNode->thisY-1]->getValue() != 2 && NotIn(Closed, internalMap[tempNode->thisX][tempNode->thisY-1] ) ){
+			Node* temp = internalMap[tempNode->thisX][tempNode->thisY-1];
+			temp->thisX = tempNode->thisX; temp->thisY = tempNode->thisY-1;
+
+			//adding manhattanvalue
+			temp->ManhattanValue = (std::abs( int(temp->thisX-targetX) ) + std::abs( int(temp->thisY-targetY) ) ) * 10;
+			temp->Parent = tempNode;
+			Open.push_back( temp );
+		}
+
+
+
+
+	}
+	return false;
+}
+
+bool Agent::NotIn(vector<Node*> vec, Node* node){
+	for(int i = 0; i < vec.size(); i++){
+		if(vec[i]->thisX == node->thisX && vec[i]->thisY == node->thisY){ return false; }
+	}
+	return true;
 }

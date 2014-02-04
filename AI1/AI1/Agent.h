@@ -28,7 +28,8 @@ private:
 	void Move();	// This function will move the agent to a new place
 	void Draw(int x, int y);
 	void Recon();
-	
+	bool AStar();
+	bool NotIn(std::vector<Node*> vec, Node* node);
 
 public:
 	// Variables
