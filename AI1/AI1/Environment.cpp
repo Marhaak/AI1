@@ -89,7 +89,7 @@ Node* Environment::SetStartNode() {
 	
 	//set random start node that is not a wall.
 	while(startNode->getValue() == 2 || startNode->getValue() == 1 ) {
-		botX= rand() % xSize;
+		botX = rand() % xSize;
 		botY = rand() % ySize;
 		startNode = map[botX][botY];
 	}

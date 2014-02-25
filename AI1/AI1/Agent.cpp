@@ -141,12 +141,17 @@ void Agent::Move() {
 				else if(posY+internOffsetY-tempY < 0 && world->isMoveAble(posX, posY+1)->getValue() != 2){ posY++; }
 				
 				//force move
-				else{
-
-					if(world->isMoveAble(posX, posY-1)->getValue() != 2){ posY--; }		
-					else if (world->isMoveAble(posX-1, posY)->getValue() != 2){ posX--; }
-					else if(world->isMoveAble(posX+1, posY)->getValue() != 2){ posX++; }
-					else if(world->isMoveAble(posX, posY+1)->getValue() != 2){ posY++; }
+				else {
+					bool move = false;
+					while(move == false){
+						int x = rand() % 4;
+						switch (x){
+							case 0: if(world->isMoveAble(posX, posY-1)->getValue() != 2){ posY--; move = true;} break;
+							case 1: if(world->isMoveAble(posX, posY+1)->getValue() != 2){ posY++; move = true;} break;
+							case 2: if(world->isMoveAble(posX-1, posY)->getValue() != 2){ posX--; move = true;} break;
+							case 3: if(world->isMoveAble(posX+1, posY)->getValue() != 2){ posX++; move = true;} break;
+						}
+					}
 				}
 				
 			}
